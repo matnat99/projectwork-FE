@@ -1,6 +1,7 @@
 export default function Button({
   size = "md",
   variant = "primary",
+  className,
   children,
   ...props
 }) {
@@ -20,7 +21,7 @@ export default function Button({
 
   return (
     <button
-      className={`${baseStyle} ${variants[variant]} ${sizes[size]}`}
+      className={`${baseStyle} ${variants[variant]} ${sizes[size]} ${className}`}
       {...props}
     >
       {children}

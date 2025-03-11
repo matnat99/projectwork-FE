@@ -1,6 +1,7 @@
 import Heading from "../components/ui/Heading";
 import Button from "../components/ui/Button";
 import Card from "../components/ui/Card";
+import VerticalCard from "../components/ui/VerticalCard";
 
 export default function DesignSystem() {
   return (
@@ -38,6 +39,38 @@ export default function DesignSystem() {
         <Heading level={3}>Cards</Heading>
         <div className="w-96">
           <Card image={""} title={"Titolo"} content={"Prova"} />
+        </div>
+      </section>
+      <section className="flex gap-6 justify-around">
+        <div>
+          <Heading level={3}>Vertical Card</Heading>
+          <VerticalCard
+            title={"Titolo"}
+            image={""}
+            content={"Prova"}
+            director={"Regista"}
+            link={"/"}
+          />
+        </div>
+        <div>
+          <Heading level={3}>Vertical Card</Heading>
+          <VerticalCard
+            title={"Titolo"}
+            image={""}
+            content={"Prova"}
+            director={"Regista"}
+            link={"/"}
+          />
+        </div>
+        <div>
+          <Heading level={3}>Vertical Card</Heading>
+          <VerticalCard
+            title={"Titolo"}
+            image={""}
+            content={"Prova"}
+            director={"Regista"}
+            link={"/"}
+          />
         </div>
       </section>
     </div>
