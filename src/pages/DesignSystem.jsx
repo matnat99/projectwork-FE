@@ -1,7 +1,7 @@
 import Heading from "../components/ui/Heading";
 import Button from "../components/ui/Button";
-import Card from "../components/ui/Card";
-import VerticalCard from "../components/ui/VerticalCard";
+import HorizontalPCCard from "../components/ui/Card";
+import VerticalPCCard from "../components/ui/VerticalCard";
 
 export default function DesignSystem() {
   return (
@@ -37,39 +37,61 @@ export default function DesignSystem() {
       <hr />
       <section>
         <Heading level={3}>Cards</Heading>
-        <div className="w-96">
-          <Card image={""} title={"Titolo"} content={"Prova"} />
-        </div>
+        <HorizontalPCCard
+          title="HP Pavilion Gaming Desktop"
+          image="/images/hp-pavilion.jpg"
+          content="Potente PC da gaming con prestazioni eccellenti per giochi e multitasking."
+          specs="Intel Core i7 • 16GB RAM • RTX 3060"
+          link="/prodotti/hp-pavilion"
+        />
       </section>
       <section className="flex gap-6 justify-around">
         <div>
           <Heading level={3}>Vertical Card</Heading>
-          <VerticalCard
-            title={"Titolo"}
-            image={""}
-            content={"Prova"}
-            director={"Regista"}
-            link={"/"}
+          <VerticalPCCard
+            title="HP Pavilion Gaming Desktop"
+            image="/images/hp-pavilion.jpg"
+            content="Potente PC da gaming con prestazioni eccellenti per giochi e multitasking."
+            specs={[
+              "Intel Core i7-11700",
+              "16GB RAM DDR4",
+              "NVIDIA RTX 3060 8GB",
+              "SSD 512GB + HDD 1TB",
+            ]}
+            price="1299.99"
+            link="/prodotti/hp-pavilion"
           />
         </div>
         <div>
           <Heading level={3}>Vertical Card</Heading>
-          <VerticalCard
-            title={"Titolo"}
-            image={""}
-            content={"Prova"}
-            director={"Regista"}
-            link={"/"}
+          <VerticalPCCard
+            title="HP Pavilion Gaming Desktop"
+            image="/images/hp-pavilion.jpg"
+            content="Potente PC da gaming con prestazioni eccellenti per giochi e multitasking."
+            specs={[
+              "Intel Core i7-11700",
+              "16GB RAM DDR4",
+              "NVIDIA RTX 3060 8GB",
+              "SSD 512GB + HDD 1TB",
+            ]}
+            price="1299.99"
+            link="/prodotti/hp-pavilion"
           />
         </div>
         <div>
           <Heading level={3}>Vertical Card</Heading>
-          <VerticalCard
-            title={"Titolo"}
-            image={""}
-            content={"Prova"}
-            director={"Regista"}
-            link={"/"}
+          <VerticalPCCard
+            title="HP Pavilion Gaming Desktop"
+            image="/images/hp-pavilion.jpg"
+            content="Potente PC da gaming con prestazioni eccellenti per giochi e multitasking."
+            specs={[
+              "Intel Core i7-11700",
+              "16GB RAM DDR4",
+              "NVIDIA RTX 3060 8GB",
+              "SSD 512GB + HDD 1TB",
+            ]}
+            price="1299.99"
+            link="/prodotti/hp-pavilion"
           />
         </div>
       </section>
