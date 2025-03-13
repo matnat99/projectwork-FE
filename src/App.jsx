@@ -7,6 +7,7 @@ import DefaultLayout from "./layouts/DefaultLayout";
 import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
 import DesignSystem from "./pages/DesignSystem";
+import Catalogo from "./pages/Catalogo";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <Route element={<DefaultLayout />}>
           <Route index element={<HomePage />} />
           <Route path="/Yuno/:id" element={<ProductPage />} />
+          <Route path="/catalogo" element={<Catalogo />} />
         </Route>
       </Routes>
     </BrowserRouter>

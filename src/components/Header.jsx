@@ -14,7 +14,7 @@ export default function Header() {
               <NavLink to="/">Home</NavLink>
             </li>
             <li className="hover:text-gray-200 cursor-pointer">
-              <NavLink to="#">Catalogo</NavLink>
+              <NavLink to="/catalogo">Catalogo</NavLink>
             </li>
           </ul>
         </nav>
