@@ -14,7 +14,7 @@ export default function HorizontalPCCard({
       <div className="w-1/2">
         <img
           className="h-full object-cover rounded-l-xl"
-          src={image}
+          src={`${image}.jpg`}
           alt={title}
         />
       </div>
