@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import Heading from "../components/ui/Heading";
 
-export default function MoviePage() {
+export default function ProductPage() {
   const { id } = useParams();
   const [product, setProduct] = useState({});
   const navigate = useNavigate();
@@ -12,7 +12,6 @@ export default function MoviePage() {
   if (product.discount > 0) {
     TotalDiscount = product.price - (product.price / 100) * product.discount;
   }
-
 
   const fetchProduct = () => {
     axios
@@ -54,11 +53,6 @@ export default function MoviePage() {
           <Heading level={5}>
             <strong>Gpu: </strong> {product.gpu}
           </Heading>
-          {product.discount > 0 && (
-            <Heading level={5}>
-              <strong>Sconto: </strong> {product.discount}%
-            </Heading>
-          )}
           <p className="text-lg">
             <strong>Descrizione: </strong>
             {product.description}
@@ -67,16 +61,13 @@ export default function MoviePage() {
             <strong>Quantità: </strong> {product.quantity}
           </Heading>
           <Heading level={5}>
-            
-          <div>
-            Prezzo:{" "}
-            <span className="text-blue-600">{`€ ${TotalDiscount}`}</span>
-            {product.discount > 0 && (
-              <span className="text-red-500 line-through ml-2">{`€ ${
-                product.price
-              }`}</span>
-            )}
-          </div>
+            <div>
+              Prezzo:{" "}
+              <span className="text-blue-600">{`€ ${TotalDiscount}`}</span>
+              {product.discount > 0 && (
+                <span className="text-red-500 line-through ml-2">{`€ ${product.price}`}</span>
+              )}
+            </div>
           </Heading>
         </div>
       </div>
