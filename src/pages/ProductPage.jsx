@@ -7,6 +7,12 @@ export default function MoviePage() {
   const { id } = useParams();
   const [product, setProduct] = useState({});
   const navigate = useNavigate();
+  let TotalDiscount = product.price;
+
+  if (product.discount > 0) {
+    TotalDiscount = product.price - (product.price / 100) * product.discount;
+  }
+
 
   const fetchProduct = () => {
     axios
@@ -61,7 +67,16 @@ export default function MoviePage() {
             <strong>Quantità: </strong> {product.quantity}
           </Heading>
           <Heading level={5}>
-            <strong>Prezzo: </strong> {product.price}
+            
+          <div>
+            Prezzo:{" "}
+            <span className="text-blue-600">{`€ ${TotalDiscount}`}</span>
+            {product.discount > 0 && (
+              <span className="text-red-500 line-through ml-2">{`€ ${
+                product.price
+              }`}</span>
+            )}
+          </div>
           </Heading>
         </div>
       </div>

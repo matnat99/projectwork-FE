@@ -20,6 +20,13 @@ title,
 {
 
   const {idpc} = useParams();
+  let TotalDiscount = price;
+
+  if (discount > 0) {
+    TotalDiscount = price - (price / 100) * discount;
+  }
+
+  
 
   return (
     <div className="bg-white rounded-xl shadow-md shadow-black max-w-xs h-full flex flex-col">
@@ -40,9 +47,14 @@ title,
         </ul>
         <p className="text-sm line-clamp-3">{description}</p>
         <div className="mt-auto pt-4 flex flex-col items-center gap-2">
-          <Heading level={5} className="text-blue-600">
-            {price} €
-          </Heading>
+        <div>
+            <span className="text-blue-600">{`€ ${TotalDiscount}`}</span>
+            {discount > 0 && (
+              <span className="text-red-500 line-through ml-2">{`€ ${
+                price
+              }`}</span>
+            )}
+          </div>
           <Link to={`/Yuno/${id}`} className="w-full">
             <Button className="w-full text-center" size="sm">
               Scopri di più

@@ -15,7 +15,7 @@ export default function App() {
         <Route path="/design-system" element={<DesignSystem />} />
         <Route element={<DefaultLayout />}>
           <Route index element={<HomePage />} />
-          <Route path="/product/:id" element={<ProductPage />} />
+          <Route path="/Yuno/:id" element={<ProductPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

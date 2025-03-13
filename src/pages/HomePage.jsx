@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "../api/axios";
 import Heading from "../components/ui/Heading";
 import VerticalPCCard from "../components/ui/VerticalCard";
 import HorizontalPCCard from "../components/ui/Card";
@@ -11,7 +11,7 @@ export default function HomePage() {
   const [Pc, SetPc] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3001/Yuno").then((response) => {
+    axios.get("/Yuno").then((response) => {
       SetPc(response.data);
     });
   }, []);

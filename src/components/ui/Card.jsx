@@ -40,7 +40,7 @@ export default function HorizontalPCCard({
             <li>{cpu}</li>
             <li>{ram}</li>
           </ul> */}
-          <p className="text-xs line-clamp-6">{description}</p>
+          <p className="text-xs line-clamp-4 md:line-clamp-5 xl:line-clamp-6">{description}</p>
         </div>
         <div className="text-center mt-2">
           <div>
