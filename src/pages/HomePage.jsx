@@ -67,8 +67,15 @@ export default function HomePage() {
                   <HorizontalPCCard
                     title={card.title}
                     image={card.image}
-                    content={card.content}
-                    specs={card.specs}
+                    description={card.description}
+                    category={card.category}
+                    price={card.price}
+                    quantity={card.quantity}
+                    cpu={card.cpu}
+                    gpu={card.gpu}
+                    ram={card.ram}
+                    discount={card.discount}
+                    id={card.id}
                   />
                 </div>
               ))}
@@ -85,8 +92,15 @@ export default function HomePage() {
                     <VerticalPCCard
                       title={card.title}
                       image={card.image}
-                      content={card.content}
-                      specs={card.specs}
+                      description={card.description}
+                      category={card.category}
+                      price={card.price}
+                      quantity={card.quantity}
+                      cpu={card.cpu}
+                      gpu={card.gpu}
+                      ram={card.ram}
+                      discount={card.discount}
+                      id={card.id}
                     />
                   </div>
                 ))}

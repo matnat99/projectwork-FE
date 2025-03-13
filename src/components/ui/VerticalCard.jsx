@@ -1,6 +1,8 @@
 import Button from "./Button";
 import Heading from "./Heading";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+
 
 export default function VerticalPCCard({
 category,
@@ -14,7 +16,11 @@ price,
 quantity,
 ram,
 title,
-}) {
+})
+{
+
+  const {idpc} = useParams();
+
   return (
     <div className="bg-white rounded-xl shadow-md shadow-black max-w-xs h-full flex flex-col">
       <div className="w-full h-48">
@@ -28,14 +34,16 @@ title,
         <Heading level={4}>{title}</Heading>
         <Heading level={6}>Specifiche:</Heading>
         <ul className="text-sm list-disc pl-5">
-            <li>{category}</li>
+            <li>{gpu}</li>
+            <li>{cpu}</li>
+            <li>{ram}</li>
         </ul>
-        <p className="text-sm">{description}</p>
+        <p className="text-sm line-clamp-3">{description}</p>
         <div className="mt-auto pt-4 flex flex-col items-center gap-2">
           <Heading level={5} className="text-blue-600">
             {price} €
           </Heading>
-          <Link to={"/"} className="w-full">
+          <Link to={`/Yuno/${id}`} className="w-full">
             <Button className="w-full text-center" size="sm">
               Scopri di più
             </Button>
