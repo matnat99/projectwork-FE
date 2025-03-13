@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import Heading from "../components/ui/Heading";
 import VerticalPCCard from "../components/ui/VerticalCard";
 import HorizontalPCCard from "../components/ui/Card";
@@ -6,58 +8,15 @@ import { Grid, List } from "lucide-react";
 
 export default function HomePage() {
   const [viewType, setViewType] = useState("horizontal"); // "horizontal" o "vertical"
+  const [Pc, SetPc] = useState([]);
 
-  // Dati delle card
-  const pcCards = [
-    {
-      title: "HP Pavilion Gaming Desktop",
-      image: "../img/hp-pavilion.jpg",
-      content:
-        "Potente PC da gaming con prestazioni eccellenti per giochi e multitasking.",
-      specs: [
-        "Intel Core i7-11700",
-        "16GB RAM DDR4",
-        "NVIDIA RTX 3060 8GB",
-        "SSD 512GB + HDD 1TB",
-      ],
-    },
-    {
-      title: "HP Pavilion Gaming Desktop",
-      image: "../img/hp-pavilion.jpg",
-      content:
-        "Potente PC da gaming con prestazioni eccellenti per giochi e multitasking.",
-      specs: [
-        "Intel Core i7-11700",
-        "16GB RAM DDR4",
-        "NVIDIA RTX 3060 8GB",
-        "SSD 512GB + HDD 1TB",
-      ],
-    },
-    {
-      title: "HP Pavilion Gaming Desktop",
-      image: "../img/hp-pavilion.jpg",
-      content:
-        "Potente PC da gaming con prestazioni eccellenti per giochi e multitasking.",
-      specs: [
-        "Intel Core i7-11700",
-        "16GB RAM DDR4",
-        "NVIDIA RTX 3060 8GB",
-        "SSD 512GB + HDD 1TB",
-      ],
-    },
-    {
-      title: "HP Pavilion Gaming Desktop",
-      image: "../img/hp-pavilion.jpg",
-      content:
-        "Potente PC da gaming con prestazioni eccellenti per giochi e multitasking.",
-      specs: [
-        "Intel Core i7-11700",
-        "16GB RAM DDR4",
-        "NVIDIA RTX 3060 8GB",
-        "SSD 512GB + HDD 1TB",
-      ],
-    },
-  ];
+  useEffect(() => {
+    axios.get("http://localhost:3001/Yuno").then((response) => {
+      SetPc(response.data);
+    });
+  }, []);
+
+  console.log(Pc);
 
   return (
     <>
@@ -100,7 +59,7 @@ export default function HomePage() {
           {viewType === "horizontal" ? (
             // Visualizzazione orizzontale (come nel tuo codice originale)
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-              {pcCards.map((card, index) => (
+              {Pc.map((card, index) => (
                 <div
                   key={index}
                   className={index === 0 ? "hidden md:block" : ""}
@@ -118,7 +77,7 @@ export default function HomePage() {
             // Visualizzazione verticale
             <div className="flex justify-center">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4">
-                {pcCards.map((card, index) => (
+                {Pc.map((card, index) => (
                   <div
                     key={index}
                     className={index === 0 ? "hidden md:block" : ""}
