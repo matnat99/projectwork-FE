@@ -4,6 +4,7 @@ import axios from "../api/axios";
 import Heading from "../components/ui/Heading";
 import VerticalPCCard from "../components/ui/VerticalCard";
 import HorizontalPCCard from "../components/ui/Card";
+import Catalogo from "./Catalogo";
 import { Grid, List } from "lucide-react";
 
 export default function HomePage() {
@@ -108,6 +109,7 @@ export default function HomePage() {
             </div>
           )}
         </div>
+        <Catalogo />
       </div>
     </>
   );
