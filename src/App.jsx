@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
 import DesignSystem from "./pages/DesignSystem";
 import Catalogo from "./pages/Catalogo";
+import PageNotFound from "./pages/PageNotFound";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
           <Route path="/Yuno/:id" element={<ProductPage />} />
           <Route path="/catalogo" element={<Catalogo />} />
         </Route>
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
   );
