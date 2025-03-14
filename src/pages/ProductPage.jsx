@@ -37,7 +37,11 @@ export default function ProductPage() {
       </Link>
       <div className="grid grid-cols-12 gap-2 mt-5 p-4 bg-white rounded-xl shadow-md shadow-black">
         <div className="col-span-12 md:col-span-4">
-          <img className="w-full" src={product.image} alt={product.title} />
+          <img
+            className="w-full"
+            src={`${product.image}.jpg`}
+            alt={product.title}
+          />
         </div>
         <div className="col-span-12 md:col-span-8 p-4 space-y-2">
           <Heading level={3}>{product.title}</Heading>
