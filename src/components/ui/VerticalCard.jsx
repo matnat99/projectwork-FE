@@ -53,11 +53,11 @@ export default function VerticalPCCard({
                 TotalDiscount
               ).toFixed(2)}`}</span>
             </div>
-            <Link to={`/Yuno/${id}`} className="w-full">
+            <div className="w-full">
               <Button className="w-full text-center" size="sm">
                 Scopri di più
               </Button>
-            </Link>
+            </div>
           </div>
         </div>
       </div>
