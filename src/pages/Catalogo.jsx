@@ -10,7 +10,7 @@ export default function Catalogo() {
           { src: "../img/immagine_asus.jpeg", alt: "Asus" },
           { src: "../img/immagine_schedamadre.jpg", alt: "Scheda Madre" },
         ].map((item, index) => (
-          <div key={index} className="flex w-72 h-48 overflow-hidden">
+          <div key={index} className="flex w-full h-48 overflow-hidden object-contain">
             <button className="w-full h-full flex items-center justify-center">
               <img
                 src={item.src}
