@@ -75,7 +75,7 @@ export default function VerticalPCCard({
   };
 
   return (
-    <Link to={`/Yuno/${id}`}>
+    <Link to={`/Yuno/${title}`}>
       <div className="bg-white rounded-xl shadow-md shadow-black max-w-xs h-full flex flex-col">
         <div className="w-full h-48">
           <img

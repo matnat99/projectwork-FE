@@ -13,7 +13,7 @@ import {
 } from "../utils/storage";
 
 export default function ProductPage() {
-  const { id } = useParams();
+  const { title } = useParams();
   const [product, setProduct] = useState({});
   const [inWishlist, setInWishlist] = useState(false);
   const [inCart, setInCart] = useState(false);
@@ -27,7 +27,7 @@ export default function ProductPage() {
 
   const fetchProduct = () => {
     axios
-      .get(`/yuno/${id}`)
+      .get(`/yuno/${title}`)
       .then((res) => {
         setProduct(res.data);
       })
@@ -38,7 +38,7 @@ export default function ProductPage() {
       });
   };
 
-  useEffect(fetchProduct, [id, navigate]);
+  useEffect(fetchProduct, [title, navigate]);
 
   const fetchCorrelatedProducts = () => {
     const { ram, cpu, gpu } = product;

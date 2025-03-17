@@ -22,7 +22,7 @@ export default function App() {
         <Route path="/design-system" element={<DesignSystem />} />
         <Route element={<DefaultLayout />}>
           <Route index element={<HomePage />} />
-          <Route path="/Yuno/:id" element={<ProductPage />} />
+          <Route path="/Yuno/:title" element={<ProductPage />} />
           <Route path="/catalogo" element={<Catalogo />} />
           <Route path="/wishlist" element={<WishlistPage />} />
           <Route path="/cart" element={<CartPage />} />
