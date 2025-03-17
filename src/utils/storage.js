@@ -83,3 +83,22 @@ export const updateCartItemQuantity = (productId, quantity) => {
   });
   localStorage.setItem("cart", JSON.stringify(updatedCart));
 };
+
+//informazioni per il checkout utilizzate da SALES
+export const saveCheckoutData = (data) => {
+  const checkoutData = {
+    discountedTotal: data.discountedTotal,
+    total: data.total,
+    items: data.items,
+  };
+  sessionStorage.setItem("checkoutData", JSON.stringify(checkoutData));
+};
+
+export const getCheckoutData = () => {
+  const data = sessionStorage.getItem("checkoutData");
+  return data ? JSON.parse(data) : null;
+};
+
+export const clearCheckoutData = () => {
+  sessionStorage.removeItem("checkoutData");
+};

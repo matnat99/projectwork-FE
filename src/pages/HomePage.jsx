@@ -17,8 +17,6 @@ export default function HomePage() {
     });
   }, []);
 
-  console.log(Pc);
-
   return (
     <>
       <div>
