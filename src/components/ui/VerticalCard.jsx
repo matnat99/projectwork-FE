@@ -76,7 +76,11 @@ export default function VerticalPCCard({
 
   return (
     <Link to={`/Yuno/${title}`}>
-      <div className="bg-white rounded-xl shadow-md shadow-black max-w-xs h-full flex flex-col">
+      <div
+        className={`bg-white rounded-xl shadow-md shadow-black max-w-xs h-full flex flex-col ${
+          discount > 0 ? "border-4 border-red-500" : ""
+        }`}
+      >
         <div className="w-full h-48">
           <img
             className="w-full h-full object-contain p-4"
@@ -103,11 +107,6 @@ export default function VerticalPCCard({
               <span className="text-blue-600">{`€ ${Number(
                 TotalDiscount
               ).toFixed(2)}`}</span>
-            </div>
-            <div className="w-full">
-              <Button className="w-full text-center" size="sm">
-                Scopri di più
-              </Button>
             </div>
             <div className="w-full flex gap-2 justify-center">
               <Button
