@@ -73,7 +73,7 @@ export default function HorizontalPCCard({
   };
 
   return (
-    <Link to={`/Yuno/${title}`}>
+    <Link to={`/Yuno/${id}`}>
       <div
         className={`bg-white rounded-xl shadow-md shadow-black flex h-60 ${
           discount > 0 ? "border-4 border-red-500" : ""
