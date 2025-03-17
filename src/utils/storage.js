@@ -102,3 +102,27 @@ export const getCheckoutData = () => {
 export const clearCheckoutData = () => {
   sessionStorage.removeItem("checkoutData");
 };
+
+//local storage per la gestione dei dati dello scontrino
+
+export const infoSales = (data) => {
+  const infoSales = {
+    user_id: data.user_id,
+    user_email: data.user_email,
+    user_address: data.user_address,
+    data: data.data,
+    state: data.state,
+    discounted: Number(data.discountedTotal),
+    total: Number(data.total),
+  };
+  sessionStorage.setItem("infoSales", JSON.stringify(infoSales));
+};
+
+export const getInfoSales = () => {
+  const data = sessionStorage.getItem("infoSales");
+  return data ? JSON.parse(data) : null;
+};
+
+export const clearInfoSales = () => {
+  sessionStorage.removeItem("infoSales");
+};
