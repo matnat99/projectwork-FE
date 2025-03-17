@@ -73,8 +73,12 @@ export default function HorizontalPCCard({
   };
 
   return (
-    <Link to={`/Yuno/${id}`}>
-      <div className="bg-white rounded-xl shadow-md shadow-black flex h-60">
+    <Link to={`/Yuno/${title}`}>
+      <div
+        className={`bg-white rounded-xl shadow-md shadow-black flex h-60 ${
+          discount > 0 ? "border-4 border-red-500" : ""
+        }`}
+      >
         <div className="w-1/2">
           <img
             className="w-full h-full object-contain p-4"
@@ -92,7 +96,7 @@ export default function HorizontalPCCard({
             <li>{cpu}</li>
             <li>{ram}</li>
           </ul> */}
-            <p className="text-xs line-clamp-4 md:line-clamp-5 xl:line-clamp-6">
+            <p className="text-xs line-clamp-4 md:line-clamp-4 xl:line-clamp-5">
               {description}
             </p>
           </div>
