@@ -26,7 +26,21 @@ export default function HomePage() {
           alt=""
         />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white">
-          Welcome to Our Website!
+          <Heading level={2}>
+            Affidabilità garantita, dai marchi che contano.
+          </Heading>
+          <br />
+          <br />
+          <Heading level={5}>
+            Nel mondo della tecnologia, la qualità e la durata nel tempo fanno
+            la differenza. Per questo, il nostro impegno è selezionare solo i
+            migliori brand del settore, garantendo prodotti affidabili,
+            prestazioni eccellenti e un supporto costante. Ogni componente e
+            dispositivo che offriamo è scelto con cura per assicurare stabilità,
+            sicurezza e innovazione. Con noi, puoi contare su un’esperienza
+            d’acquisto senza sorprese, basata su marchi di fiducia e soluzioni
+            su misura per le tue esigenze.
+          </Heading>
         </div>
       </div>
       <div className="bg-[#181818]">
