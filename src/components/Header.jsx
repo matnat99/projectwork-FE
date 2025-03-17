@@ -28,6 +28,12 @@ export default function Header() {
                 Carrello
               </NavLink>
             </li>
+            <li className="hover:text-gray-200 cursor-pointer">
+              <NavLink to="/search">
+                <i className="fa-solid fa-search" />
+                Cerca
+              </NavLink>
+            </li>
           </ul>
         </nav>
       </div>
