@@ -17,6 +17,7 @@ export default function ProductPage() {
   const [product, setProduct] = useState({});
   const [inWishlist, setInWishlist] = useState(false);
   const [inCart, setInCart] = useState(false);
+  const [correlatedProducts, setCorrelatedProducts] = useState([]);
   const navigate = useNavigate();
   let TotalDiscount = product.price;
 
@@ -39,10 +40,28 @@ export default function ProductPage() {
 
   useEffect(fetchProduct, [id, navigate]);
 
+  const fetchCorrelatedProducts = () => {
+    const { ram, cpu, gpu } = product;
+
+    axios
+      .get("http://localhost:3001/yuno/correlated", {
+        params: { ram: "4gb" },
+      })
+      .then((res) => {
+        console.log(ram, cpu, gpu);
+        setCorrelatedProducts(res.data);
+        console.log(res);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch correlated products", err);
+      });
+  };
+
   useEffect(() => {
     if (product.id) {
       setInWishlist(isInWishlist(product.id));
       setInCart(isInCart(product.id));
+      fetchCorrelatedProducts();
     }
   }, [product]);
 
@@ -138,7 +157,7 @@ export default function ProductPage() {
           <Heading level={5}>
             <strong>Quantità: </strong> {product.quantity}
           </Heading>
-          <div className="flex gap-4 mt-4">
+          <div className="flex justify-end gap-4 mt-4">
             <Button
               className={inWishlist ? "bg-red-600 hover:bg-red-700" : ""}
               onClick={handleAddToWishlist}
@@ -154,6 +173,31 @@ export default function ProductPage() {
               {inCart ? "Nel carrello" : "Aggiungi al carrello"}
             </Button>
           </div>
+        </div>
+      </div>
+      <div className="mt-8">
+        <div className="text-white">
+          <Heading level={3}>Prodotti Correlati</Heading>
+        </div>
+        <div className="grid grid-cols-12 gap-4 mt-4">
+          {correlatedProducts.map((product) => (
+            <div
+              key={product.id}
+              className="col-span-12 md:col-span-4 p-4 bg-white rounded-xl shadow-md shadow-black"
+            >
+              <img
+                className="w-full"
+                src={`${product.image}.jpg`}
+                alt={product.title}
+              />
+              <Heading level={5}>{product.title}</Heading>
+              <p>{product.description}</p>
+              <span>{product.cpu}</span>
+              <p className="text-blue-600">{`€ ${Number(product.price).toFixed(
+                2
+              )}`}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
