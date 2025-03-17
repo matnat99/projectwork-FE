@@ -88,7 +88,7 @@ export default function HorizontalPCCard({
         </div>
         <div className="p-3 w-1/2 flex flex-col justify-between">
           <div>
-            <Heading level={5} className="mb-1">
+            <Heading level={5} className="mb-1 line-clamp-3">
               {title}
             </Heading>
             {/* <ul className="text-sm list-disc pl-5">
@@ -96,7 +96,7 @@ export default function HorizontalPCCard({
             <li>{cpu}</li>
             <li>{ram}</li>
           </ul> */}
-            <p className="text-xs line-clamp-4 md:line-clamp-4 xl:line-clamp-5">
+            <p className="text-xs  line-clamp-2 md:line-clamp-4 xl:line-clamp-5">
               {description}
             </p>
           </div>
