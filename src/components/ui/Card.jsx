@@ -107,11 +107,6 @@ export default function HorizontalPCCard({
                 TotalDiscount
               ).toFixed(2)}`}</span>
             </div>
-            <div>
-              <Button className="text-center text-xs py-1 px-3" size="xs">
-                Scopri di più
-              </Button>
-            </div>
             <div className="flex gap-2 justify-center mt-2">
               <Button
                 onClick={handleAddToWishlist}
