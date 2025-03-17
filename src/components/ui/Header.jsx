@@ -16,18 +16,6 @@ export default function Header() {
             <li className="hover:text-gray-200 cursor-pointer">
               <NavLink to="/catalogo">Catalogo</NavLink>
             </li>
-            <li className="hover:text-gray-200 cursor-pointer">
-              <NavLink to="/wishlist">
-                <i className="fa-regular fa-heart" />
-                Preferiti
-              </NavLink>
-            </li>
-            <li className="hover:text-gray-200 cursor-pointer">
-              <NavLink to="/cart">
-                <i className="fa-solid fa-cart-shopping" />
-                Carrello
-              </NavLink>
-            </li>
           </ul>
         </nav>
       </div>

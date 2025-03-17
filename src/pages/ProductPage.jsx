@@ -2,10 +2,21 @@ import axios from "../api/axios";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import Heading from "../components/ui/Heading";
+import Button from "../components/ui/Button";
+import {
+  addToWishlist,
+  addToCart,
+  isInWishlist,
+  isInCart,
+  removeFromWishlist,
+  removeFromCart,
+} from "../utils/storage";
 
 export default function ProductPage() {
   const { id } = useParams();
   const [product, setProduct] = useState({});
+  const [inWishlist, setInWishlist] = useState(false);
+  const [inCart, setInCart] = useState(false);
   const navigate = useNavigate();
   let TotalDiscount = product.price;
 
@@ -27,6 +38,57 @@ export default function ProductPage() {
   };
 
   useEffect(fetchProduct, [id, navigate]);
+
+  useEffect(() => {
+    if (product.id) {
+      setInWishlist(isInWishlist(product.id));
+      setInCart(isInCart(product.id));
+    }
+  }, [product]);
+
+  const handleAddToWishlist = () => {
+    if (inWishlist) {
+      removeFromWishlist(product.id);
+      setInWishlist(false);
+    } else {
+      addToWishlist({
+        id: product.id,
+        title: product.title,
+        image: product.image,
+        price: product.price,
+        discount: product.discount,
+        category: product.category,
+        cpu: product.cpu,
+        description: product.description,
+        gpu: product.gpu,
+        quantity: product.quantity,
+        ram: product.ram,
+      });
+      setInWishlist(true);
+    }
+  };
+
+  const handleAddToCart = () => {
+    if (inCart) {
+      removeFromCart(product.id);
+      setInCart(false);
+    } else {
+      addToCart({
+        id: product.id,
+        title: product.title,
+        image: product.image,
+        price: product.price,
+        discount: product.discount,
+        category: product.category,
+        cpu: product.cpu,
+        description: product.description,
+        gpu: product.gpu,
+        quantity: product.quantity,
+        ram: product.ram,
+      });
+      setInCart(true);
+    }
+  };
 
   return (
     <div className="max-w-6xl mx-auto px-4 my-12">
@@ -76,6 +138,22 @@ export default function ProductPage() {
           <Heading level={5}>
             <strong>Quantità: </strong> {product.quantity}
           </Heading>
+          <div className="flex gap-4 mt-4">
+            <Button
+              className={inWishlist ? "bg-red-600 hover:bg-red-700" : ""}
+              onClick={handleAddToWishlist}
+            >
+              <i className="fa-regular fa-heart mr-2"></i>
+              {inWishlist ? "Nei preferiti" : "Aggiungi ai preferiti"}
+            </Button>
+            <Button
+              className={inCart ? "bg-green-600 hover:bg-green-700" : ""}
+              onClick={handleAddToCart}
+            >
+              <i className="fa-solid fa-cart-shopping mr-2"></i>
+              {inCart ? "Nel carrello" : "Aggiungi al carrello"}
+            </Button>
+          </div>
         </div>
       </div>
     </div>

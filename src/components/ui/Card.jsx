@@ -1,6 +1,13 @@
 import Heading from "./Heading";
 import { Link } from "react-router-dom";
 import Button from "./Button";
+import {
+  addToWishlist,
+  addToCart,
+  isInWishlist,
+  isInCart,
+} from "../../utils/storage";
+import { useState, useEffect } from "react";
 
 export default function HorizontalPCCard({
   category,
@@ -20,6 +27,50 @@ export default function HorizontalPCCard({
   if (discount > 0) {
     TotalDiscount = price - (price / 100) * discount;
   }
+
+  const [inWishlist, setInWishlist] = useState(false);
+  const [inCart, setInCart] = useState(false);
+
+  useEffect(() => {
+    setInWishlist(isInWishlist(id));
+    setInCart(isInCart(id));
+  }, [id]);
+
+  const handleAddToWishlist = (e) => {
+    e.preventDefault();
+    addToWishlist({
+      id,
+      title,
+      image,
+      price,
+      discount,
+      category,
+      cpu,
+      description,
+      gpu,
+      quantity,
+      ram,
+    });
+    setInWishlist(true);
+  };
+
+  const handleAddToCart = (e) => {
+    e.preventDefault();
+    addToCart({
+      id,
+      title,
+      image,
+      price,
+      discount,
+      category,
+      cpu,
+      description,
+      gpu,
+      quantity,
+      ram,
+    });
+    setInCart(true);
+  };
 
   return (
     <Link to={`/Yuno/${id}`}>
@@ -59,6 +110,26 @@ export default function HorizontalPCCard({
             <div>
               <Button className="text-center text-xs py-1 px-3" size="xs">
                 Scopri di più
+              </Button>
+            </div>
+            <div className="flex gap-2 justify-center mt-2">
+              <Button
+                onClick={handleAddToWishlist}
+                className={`text-center text-xs py-1 px-3 ${
+                  inWishlist ? "bg-blue-600" : ""
+                }`}
+                size="xs"
+              >
+                <i className="fa-regular fa-heart"></i>
+              </Button>
+              <Button
+                onClick={handleAddToCart}
+                className={`text-center text-xs py-1 px-3 ${
+                  inCart ? "bg-blue-600" : ""
+                }`}
+                size="xs"
+              >
+                <i className="fa-solid fa-cart-shopping"></i>
               </Button>
             </div>
           </div>

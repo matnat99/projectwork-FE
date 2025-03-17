@@ -2,6 +2,13 @@ import Button from "./Button";
 import Heading from "./Heading";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import {
+  addToWishlist,
+  addToCart,
+  isInWishlist,
+  isInCart,
+} from "../../utils/storage";
+import { useState, useEffect } from "react";
 
 export default function VerticalPCCard({
   category,
@@ -19,9 +26,53 @@ export default function VerticalPCCard({
   const { idpc } = useParams();
   let TotalDiscount = price;
 
+  const [inWishlist, setInWishlist] = useState(false);
+  const [inCart, setInCart] = useState(false);
+
+  useEffect(() => {
+    setInWishlist(isInWishlist(id));
+    setInCart(isInCart(id));
+  }, [id]);
+
   if (discount > 0) {
     TotalDiscount = price - (price / 100) * discount;
   }
+
+  const handleAddToWishlist = (e) => {
+    e.preventDefault();
+    addToWishlist({
+      id,
+      title,
+      image,
+      price,
+      discount,
+      category,
+      cpu,
+      description,
+      gpu,
+      quantity,
+      ram,
+    });
+    setInWishlist(true);
+  };
+
+  const handleAddToCart = (e) => {
+    e.preventDefault();
+    addToCart({
+      id,
+      title,
+      image,
+      price,
+      discount,
+      category,
+      cpu,
+      description,
+      gpu,
+      quantity,
+      ram,
+    });
+    setInCart(true);
+  };
 
   return (
     <Link to={`/Yuno/${id}`}>
@@ -56,6 +107,26 @@ export default function VerticalPCCard({
             <div className="w-full">
               <Button className="w-full text-center" size="sm">
                 Scopri di più
+              </Button>
+            </div>
+            <div className="w-full flex gap-2 justify-center">
+              <Button
+                onClick={handleAddToWishlist}
+                className={`text-center text-xs py-1 px-3 ${
+                  inWishlist ? "bg-blue-600" : ""
+                }`}
+                size="xs"
+              >
+                <i className="fa-regular fa-heart"></i>
+              </Button>
+              <Button
+                onClick={handleAddToCart}
+                className={`text-center text-xs py-1 px-3 ${
+                  inCart ? "bg-blue-600" : ""
+                }`}
+                size="xs"
+              >
+                <i className="fa-solid fa-cart-shopping"></i>
               </Button>
             </div>
           </div>
