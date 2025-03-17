@@ -25,13 +25,19 @@ export default function HomePage() {
           src="../img/Immagine Hero Homepage.png"
           alt=""
         />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white">
-          <Heading level={2}>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-center">
+          <Heading
+            level={2}
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl"
+          >
             Affidabilità garantita, dai marchi che contano.
           </Heading>
           <br />
           <br />
-          <Heading level={5}>
+          <Heading
+            level={5}
+            className="text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mx-auto"
+          >
             Nel mondo della tecnologia, la qualità e la durata nel tempo fanno
             la differenza. Per questo, il nostro impegno è selezionare solo i
             migliori brand del settore, garantendo prodotti affidabili,
