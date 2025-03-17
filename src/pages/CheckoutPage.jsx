@@ -2,7 +2,11 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Heading from "../components/ui/Heading";
 import Button from "../components/ui/Button";
-import { getCheckoutData, clearCheckoutData } from "../utils/storage";
+import {
+  getCheckoutData,
+  clearCheckoutData,
+  infoSales,
+} from "../utils/storage";
 
 export default function CheckoutPage() {
   const navigate = useNavigate();
@@ -59,7 +63,8 @@ export default function CheckoutPage() {
         total: Number(checkoutData.total),
       };
 
-      console.log(saleData);
+      infoSales(saleData);
+      console.log(infoSales);
 
       await fetch("http://localhost:3001/sale/new", {
         method: "POST",
