@@ -9,6 +9,10 @@ import ProductPage from "./pages/ProductPage";
 import DesignSystem from "./pages/DesignSystem";
 import Catalogo from "./pages/Catalogo";
 import PageNotFound from "./pages/PageNotFound";
+import WishlistPage from "./pages/WishlistPage";
+import CartPage from "./pages/CartPage";
+import CheckoutPage from "./pages/CheckoutPage";
+import OrderSuccessPage from "./pages/OrderSuccessPage";
 
 export default function App() {
   return (
@@ -19,6 +23,10 @@ export default function App() {
           <Route index element={<HomePage />} />
           <Route path="/Yuno/:id" element={<ProductPage />} />
           <Route path="/catalogo" element={<Catalogo />} />
+          <Route path="/wishlist" element={<WishlistPage />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/order-success" element={<OrderSuccessPage />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
