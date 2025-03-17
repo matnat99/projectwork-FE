@@ -57,6 +57,7 @@ export default function CartPage() {
         discountedTotal: discountedTotal,
       })
     );
+    console.log(sessionStorage);
     navigate("/checkout");
   };
 
