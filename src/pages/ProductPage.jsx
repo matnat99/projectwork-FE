@@ -54,7 +54,10 @@ export default function ProductPage() {
         },
       })
       .then((res) => {
-        setCorrelatedProducts(res.data);
+        const filteredProducts = res.data.filter(
+          (correlatedProduct) => correlatedProduct.id !== product.id
+        );
+        setCorrelatedProducts(filteredProducts);
       })
       .catch((err) => {
         console.error("Failed to fetch correlated products", err);
@@ -197,29 +200,31 @@ export default function ProductPage() {
       </div>
 
       {/* Correlated */}
-      <div className="text-white p-12 mt-4 flex justify-between items-center">
-        <Heading level={2}>Prodotti correlati</Heading>
-        <div className="bg-gray-700 rounded-lg p-1 inline-flex">
-          <button
-            onClick={() => setViewType("horizontal")}
-            className={`p-2 rounded-md ${
-              viewType === "horizontal" ? "bg-gray-600 shadow-sm" : ""
-            }`}
-            aria-label="Visualizzazione orizzontale"
-          >
-            <List size={20} color="white" />
-          </button>
-          <button
-            onClick={() => setViewType("vertical")}
-            className={`p-2 rounded-md ${
-              viewType === "vertical" ? "bg-gray-600 shadow-sm" : ""
-            }`}
-            aria-label="Visualizzazione verticale"
-          >
-            <Grid size={20} color="white" />
-          </button>
+      {correlatedProducts.length > 0 && (
+        <div className="text-white p-12 mt-4 flex justify-between items-center">
+          <Heading level={2}>Prodotti correlati</Heading>
+          <div className="bg-gray-700 rounded-lg p-1 inline-flex">
+            <button
+              onClick={() => setViewType("horizontal")}
+              className={`p-2 rounded-md ${
+                viewType === "horizontal" ? "bg-gray-600 shadow-sm" : ""
+              }`}
+              aria-label="Visualizzazione orizzontale"
+            >
+              <List size={20} color="white" />
+            </button>
+            <button
+              onClick={() => setViewType("vertical")}
+              className={`p-2 rounded-md ${
+                viewType === "vertical" ? "bg-gray-600 shadow-sm" : ""
+              }`}
+              aria-label="Visualizzazione verticale"
+            >
+              <Grid size={20} color="white" />
+            </button>
+          </div>
         </div>
-      </div>
+      )}
 
       {viewType === "horizontal" ? (
         // Visualizzazione orizzontale
