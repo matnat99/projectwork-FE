@@ -7,7 +7,7 @@ export default function Hero() {
         className="text-4xl font-bold"
         initial={{ x: "-100vw", opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        transition={{ type: "spring", stiffness: 70, duration: 1 }}
+        transition={{ type: "spring", stiffness: 50, duration: 1.5 }}
       >
         <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-5 font-bold">
           Affidabilità garantita, dai marchi che contano
