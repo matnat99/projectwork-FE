@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "../api/axios";
 import Heading from "../components/ui/Heading";
-import HorizontalPCCard from "../components/ui/Card";
+import HorizontalPCCard from "../components/ui/HorizontalCard";
 
 export default function SearchPage() {
   const [searchTerm, setSearchTerm] = useState("");

@@ -123,20 +123,26 @@ export default function ProductPage() {
             <strong>Categoria: </strong> {product.category}
           </Heading>
           <Heading level={5}>
-            <strong>Ram: </strong> {product.ram}
+            <strong>Ram: </strong>{" "}
+            <a className="text-gray-900 text-[0.8em]">{product.ram}</a>
           </Heading>
           <Heading level={5}>
-            <strong>Cpu: </strong> {product.cpu}
+            <strong>Cpu: </strong>{" "}
+            <a className="text-gray-900 text-[0.8em]">{product.cpu}</a>
           </Heading>
           <Heading level={5}>
-            <strong>Gpu: </strong> {product.gpu}
+            <strong>Gpu: </strong>{" "}
+            <a className="text-gray-900 text-[0.8em]">{product.gpu}</a>
           </Heading>
-          <p className="text-lg">
+
+          <Heading level={5}>
             <strong>Descrizione: </strong>
-            {product.description}
-          </p>
+          </Heading>
+          <p className="text-gray-900 text-md">{product.description}</p>
+
           <Heading level={5}>
-            <strong>Quantità: </strong> {product.quantity}
+            <strong>Quantità: </strong>{" "}
+            <i className="text-gray-700">{product.quantity}</i>
           </Heading>
           <div className="flex gap-4 mt-4">
             <Button
