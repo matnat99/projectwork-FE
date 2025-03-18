@@ -25,27 +25,28 @@ export default function HomePage() {
           src="../img/Immagine Hero Homepage.png"
           alt=""
         />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-center">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white">
           <Heading
             level={2}
-            className="text-lg sm:text-xl md:text-2xl lg:text-3xl"
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-5 font-bold"
           >
-            Affidabilità garantita, dai marchi che contano.
+            Affidabilità garantita, dai marchi che contano
           </Heading>
-          <br />
-          <br />
           <Heading
-            level={5}
-            className="text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mx-auto"
+            level={4}
+            className="text-md sm:text-lg md:text-xl lg:text-2xl mb-2 font-semibold"
           >
-            Nel mondo della tecnologia, la qualità e la durata nel tempo fanno
-            la differenza. Per questo, il nostro impegno è selezionare solo i
-            migliori brand del settore, garantendo prodotti affidabili,
-            prestazioni eccellenti e un supporto costante. Ogni componente e
-            dispositivo che offriamo è scelto con cura per assicurare stabilità,
-            sicurezza e innovazione. Con noi, puoi contare su un’esperienza
-            d’acquisto senza sorprese, basata su marchi di fiducia e soluzioni
-            su misura per le tue esigenze.
+            Qualità e durata nel tempo: la nostra priorità
+          </Heading>
+          <Heading
+            level={6}
+            className="text-sm sm:text-base md:text-lg max-w-3xl mx-auto"
+          >
+            Selezioniamo solo i migliori brand per offrirti prodotti affidabili.
+            Garantiamo prestazioni eccellenti e un supporto costante. Ogni
+            componente è scelto per stabilità, sicurezza e innovazione. Con noi,
+            l’esperienza d’acquisto è senza sorprese. Marchi di fiducia e
+            soluzioni su misura per te.
           </Heading>
         </div>
       </div>

@@ -120,7 +120,7 @@ export default function ProductPage() {
           <Link to="/" className="text-white">
             /Home
           </Link>
-          <Link to={`/yuno/${product.id}`} className="text-white">
+          <Link to={`/yuno/${product.title}`} className="text-white">
             /{product.title}
           </Link>
         </Heading>
