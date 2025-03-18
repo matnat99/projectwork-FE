@@ -117,8 +117,8 @@ export default function ProductPage() {
     <div className="max-w-8xl mx-auto px-4 my-12">
       <div className="max-w-6xl mx-auto">
         <Heading level={6}>
-          <Link to="/" className="text-white">
-            /Home
+          <Link onClick={() => navigate(-1)} className="text-white">
+            /Indietro
           </Link>
           <Link to={`/yuno/${product.title}`} className="text-white">
             /{product.title}
