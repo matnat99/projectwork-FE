@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import Heading from "../components/ui/Heading";
 import Button from "../components/ui/Button";
-import HorizontalPCCard from "../components/ui/Card";
+import HorizontalPCCard from "../components/ui/HorizontalCard";
 import VerticalPCCard from "../components/ui/VerticalCard";
 import { Grid, List } from "lucide-react";
 import {
@@ -46,15 +46,15 @@ export default function ProductPage() {
 
   const fetchCorrelatedProducts = () => {
     const { ram, cpu, gpu } = product;
-
     axios
       .get("http://localhost:3001/yuno/correlated", {
-        params: { ram: "4gb" },
+        params: {
+          ram: `${product.ram.match(/\d+/)[0]}gb`,
+          cpu: product.cpu.match(/intel/i) ? "Intel" : "AMD",
+        },
       })
       .then((res) => {
-        console.log(ram, cpu, gpu);
         setCorrelatedProducts(res.data);
-        console.log(res);
       })
       .catch((err) => {
         console.error("Failed to fetch correlated products", err);
@@ -133,40 +133,49 @@ export default function ProductPage() {
               alt={product.title}
             />
           </div>
-          <div className="col-span-12 md:col-span-8 p-4 space-y-2">
-            <div className="flex items-center justify-between">
-              <Heading level={3}>{product.title}</Heading>
+          <div className="col-span-12 md:col-span-8 p-4 space-y-2 flex flex-col justify-between">
+            <div className="flex flex-col">
               <div className="flex items-center justify-between">
-                {product.discount > 0 && (
-                  <Heading
-                    level={5}
-                    className="text-red-500 line-through ml-2"
-                  >{`€${Number(product.price).toFixed(2)}`}</Heading>
-                )}
-                <Heading level={5} className="text-blue-600">{`€${Number(
-                  TotalDiscount
-                ).toFixed(2)}`}</Heading>
+                <Heading level={3}>{product.title}</Heading>
+                <div className="flex items-center justify-between">
+                  {product.discount > 0 && (
+                    <Heading
+                      level={5}
+                      className="text-red-500 line-through ml-2"
+                    >{`€${Number(product.price).toFixed(2)}`}</Heading>
+                  )}
+                  <Heading level={5} className="text-blue-600">{`€${Number(
+                    TotalDiscount
+                  ).toFixed(2)}`}</Heading>
+                </div>
               </div>
+
+              <Heading level={5}>
+                <strong>Categoria: </strong> {product.category}
+              </Heading>
+              <Heading level={5}>
+                <strong>Ram: </strong>{" "}
+                <a className="text-gray-900 text-[0.8em]">{product.ram}</a>
+              </Heading>
+              <Heading level={5}>
+                <strong>Cpu: </strong>{" "}
+                <a className="text-gray-900 text-[0.8em]">{product.cpu}</a>
+              </Heading>
+              <Heading level={5}>
+                <strong>Gpu: </strong>{" "}
+                <a className="text-gray-900 text-[0.8em]">{product.gpu}</a>
+              </Heading>
+
+              <Heading level={5}>
+                <strong>Descrizione: </strong>
+              </Heading>
+              <p className="text-gray-900 text-md">{product.description}</p>
+
+              <Heading level={5}>
+                <strong>Quantità: </strong>{" "}
+                <i className="text-gray-700">{product.quantity}</i>
+              </Heading>
             </div>
-            <Heading level={5}>
-              <strong>Categoria: </strong> {product.category}
-            </Heading>
-            <Heading level={5}>
-              <strong>Ram: </strong> {product.ram}
-            </Heading>
-            <Heading level={5}>
-              <strong>Cpu: </strong> {product.cpu}
-            </Heading>
-            <Heading level={5}>
-              <strong>Gpu: </strong> {product.gpu}
-            </Heading>
-            <p className="text-lg">
-              <strong>Descrizione: </strong>
-              {product.description}
-            </p>
-            <Heading level={5}>
-              <strong>Quantità: </strong> {product.quantity}
-            </Heading>
             <div className="flex justify-end gap-4 mt-4">
               <Button
                 className={inWishlist ? "bg-red-600 hover:bg-red-700" : ""}
