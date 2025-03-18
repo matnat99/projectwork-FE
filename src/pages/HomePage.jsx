@@ -5,6 +5,7 @@ import Heading from "../components/ui/Heading";
 import VerticalPCCard from "../components/ui/VerticalCard";
 import HorizontalPCCard from "../components/ui/Card";
 import Catalogo from "./Catalogo";
+import Hero from "../components/Hero";
 import { Grid, List } from "lucide-react";
 
 export default function HomePage() {
@@ -25,30 +26,7 @@ export default function HomePage() {
           src="../img/Immagine Hero Homepage.png"
           alt=""
         />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white">
-          <Heading
-            level={2}
-            className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-5 font-bold"
-          >
-            Affidabilità garantita, dai marchi che contano
-          </Heading>
-          <Heading
-            level={4}
-            className="text-md sm:text-lg md:text-xl lg:text-2xl mb-2 font-semibold"
-          >
-            Qualità e durata nel tempo: la nostra priorità
-          </Heading>
-          <Heading
-            level={6}
-            className="text-sm sm:text-base md:text-lg max-w-3xl mx-auto"
-          >
-            Selezioniamo solo i migliori brand per offrirti prodotti affidabili.
-            Garantiamo prestazioni eccellenti e un supporto costante. Ogni
-            componente è scelto per stabilità, sicurezza e innovazione. Con noi,
-            l’esperienza d’acquisto è senza sorprese. Marchi di fiducia e
-            soluzioni su misura per te.
-          </Heading>
-        </div>
+        <Hero />
       </div>
       <div className="bg-[#181818]">
         <div className="container mx-auto">
