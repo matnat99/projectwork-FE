@@ -101,10 +101,14 @@ export default function Header() {
             <li className="hover:text-gray-200 cursor-pointer">
               <NavLink to="/catalogo">Catalogo</NavLink>
             </li>
-            <li className="hover:text-gray-200 cursor-pointer flex">
-              <NavLink to="/wishlist">
+
+
+            <li className="hover:text-gray-200 cursor-pointer">
+              <NavLink to="/wishlist" className="relative">
                 <i className="fa-regular fa-heart" />
                 <div className="text-white">{wishlistLeng}</div>
+                <div className="absolute top-0 right-0 w-12 h-12 rounded-full bg-red-500"></div>
+
               </NavLink>
             </li>
             <li className="hover:text-gray-200 cursor-pointer flex">

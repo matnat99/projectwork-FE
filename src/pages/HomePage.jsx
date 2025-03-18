@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "../api/axios";
 import Heading from "../components/ui/Heading";
 import VerticalPCCard from "../components/ui/VerticalCard";
-import HorizontalPCCard from "../components/ui/Card";
+import HorizontalPCCard from "../components/ui/HorizontalCard";
 import Catalogo from "./Catalogo";
 import Hero from "../components/Hero";
 import { Grid, List } from "lucide-react";
