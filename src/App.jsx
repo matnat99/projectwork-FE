@@ -14,10 +14,12 @@ import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import OrderSuccessPage from "./pages/OrderSuccessPage";
 import SearchPage from "./pages/SearchPage";
+import ScrollToTop from "./components/ui/ScrollTop";
 
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/design-system" element={<DesignSystem />} />
         <Route element={<DefaultLayout />}>
