@@ -3,6 +3,8 @@ export const addToWishlist = (product) => {
   if (!wishlist.some((item) => item.id === product.id)) {
     wishlist.push(product);
     localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    // Emetti l'evento di aggiornamento
+    window.dispatchEvent(new Event("wishlistUpdate"));
   }
 };
 
@@ -32,6 +34,8 @@ export const addToCart = (product) => {
   }
 
   localStorage.setItem("cart", JSON.stringify(cart));
+  // Emetti l'evento di aggiornamento
+  window.dispatchEvent(new Event("carttUpdate"));
 };
 
 export const moveToCart = (productId) => {
@@ -40,6 +44,9 @@ export const moveToCart = (productId) => {
   if (product) {
     addToCart(product);
     removeFromWishlist(productId);
+    // Emetti l'evento di aggiornamento
+    window.dispatchEvent(new Event("cartUpdate"));
+    window.dispatchEvent(new Event("wishlistUpdate"));
   }
 };
 
@@ -57,12 +64,16 @@ export function removeFromWishlist(id) {
   const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
   const newWishlist = wishlist.filter((item) => item.id !== id);
   localStorage.setItem("wishlist", JSON.stringify(newWishlist));
+  // Emetti l'evento di aggiornamento
+  window.dispatchEvent(new Event("wishlistUpdate"));
 }
 
 export const removeFromCart = (productId) => {
   const cart = JSON.parse(localStorage.getItem("cart") || "[]");
   const updatedCart = cart.filter((item) => item.id !== productId);
   localStorage.setItem("cart", JSON.stringify(updatedCart));
+  // Emetti l'evento di aggiornamento
+  window.dispatchEvent(new Event("cartUpdate"));
 };
 
 export const updateCartItemQuantity = (productId, quantity) => {
@@ -82,6 +93,8 @@ export const updateCartItemQuantity = (productId, quantity) => {
     return item;
   });
   localStorage.setItem("cart", JSON.stringify(updatedCart));
+  // Emetti l'evento di aggiornamento
+  window.dispatchEvent(new Event("cartUpdate"));
 };
 
 //informazioni per il checkout utilizzate da SALES
