@@ -1,9 +1,16 @@
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import Heading from "./ui/Heading";
 import { useState } from "react";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    navigate(`/search?q=${searchTerm}`);
+  };
 
   return (
     <header className="bg-blue-500 text-white py-4 px-6 shadow-md shadow-black relative">
@@ -11,6 +18,26 @@ export default function Header() {
         <Link to="/">
           <Heading level={1}>Yuno Build</Heading>
         </Link>
+
+        {/* Search Bar */}
+        <form onSubmit={handleSearch} className="flex-1 mx-8 hidden sm:block">
+          <div className="flex max-w-md mx-auto">
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="Cerca prodotti..."
+              className="w-full bg-white p-2 rounded-l text-black"
+            />
+            <button
+              type="submit"
+              className="bg-blue-600 px-4 rounded-r hover:bg-blue-700"
+            >
+              <i className="fa-solid fa-search"></i>
+            </button>
+          </div>
+        </form>
+
         {/* Menu Hamburger (visibile solo su mobile) */}
         <button
           className="sm:hidden z-[60] fixed right-6"
@@ -50,11 +77,6 @@ export default function Header() {
                 <i className="fa-solid fa-cart-shopping" />
               </NavLink>
             </li>
-            <li className="hover:text-gray-200 cursor-pointer">
-              <NavLink to="/search">
-                <i className="fa-solid fa-search" />
-              </NavLink>
-            </li>
           </ul>
         </nav>
 
@@ -65,6 +87,23 @@ export default function Header() {
           }`}
         >
           <ul className="flex flex-col items-center justify-center gap-8 h-full text-lg">
+            <li className="w-full px-4 bg-white">
+              <form onSubmit={handleSearch} className="flex">
+                <input
+                  type="text"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  placeholder="Cerca prodotti..."
+                  className="w-full p-2 rounded-l text-black "
+                />
+                <button
+                  type="submit"
+                  className="bg-blue-600 px-4 rounded-r hover:bg-blue-700"
+                >
+                  <i className="fa-solid fa-search"></i>
+                </button>
+              </form>
+            </li>
             <li className="hover:text-gray-200 cursor-pointer transform hover:scale-110 transition-transform">
               <NavLink to="/" onClick={() => setIsMenuOpen(false)}>
                 Home
