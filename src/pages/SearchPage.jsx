@@ -1,50 +1,38 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import axios from "../api/axios";
 import Heading from "../components/ui/Heading";
 import HorizontalPCCard from "../components/ui/Card";
 
 export default function SearchPage() {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSearch = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    try {
-      const response = await axios.get(`/yuno/search?title=${searchTerm}`);
-      setResults(response.data);
-    } catch (error) {
-      console.error("Errore nella ricerca:", error);
-      setResults([]);
-    } finally {
-      setIsLoading(false);
+  useEffect(() => {
+    const searchTerm = searchParams.get("q");
+    if (searchTerm) {
+      setIsLoading(true);
+      axios
+        .get(`/yuno/search?title=${searchTerm}`)
+        .then((response) => {
+          setResults(response.data);
+        })
+        .catch((error) => {
+          console.error("Errore nella ricerca:", error);
+          setResults([]);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
     }
-  };
+  }, [searchParams]);
 
   return (
     <div className="container mx-auto px-4 py-8">
       <Heading level={2} className="text-white mb-6">
-        Ricerca Prodotti
+        Risultati della ricerca
       </Heading>
-
-      <form onSubmit={handleSearch} className="mb-8">
-        <div className="flex gap-4">
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Cerca prodotti..."
-            className="flex-1 p-2 rounded bg-white"
-          />
-          <button
-            type="submit"
-            className="bg-blue-600 text-white px-4 py-2 rounded"
-          >
-            Cerca
-          </button>
-        </div>
-      </form>
 
       {isLoading ? (
         <p className="text-white text-center">Caricamento...</p>
@@ -53,7 +41,7 @@ export default function SearchPage() {
           {results.map((product) => (
             <HorizontalPCCard key={product.id} {...product} />
           ))}
-          {results.length === 0 && searchTerm && (
+          {results.length === 0 && searchParams.get("q") && (
             <p className="text-white col-span-full text-center">
               Nessun risultato trovato
             </p>
