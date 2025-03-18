@@ -102,18 +102,31 @@ export default function Header() {
               <NavLink to="/catalogo">Catalogo</NavLink>
             </li>
 
-            <li className="hover:text-gray-200 cursor-pointer">
-              <NavLink to="/wishlist" className="relative">
+            <NavLink to="/wishlist" className="relative">
+              <li className="hover:text-gray-200 cursor-pointer flex items-center gap-2">
                 <i className="fa-regular fa-heart" />
-                <div className="text-white">{wishlistLeng}</div>
-              </NavLink>
-            </li>
-            <li className="hover:text-gray-200 cursor-pointer flex">
-              <NavLink to="/cart">
+                {wishlistLeng > 0 ? (
+                  <div className="text-white bg-red-600 px-2 rounded-full shadow-2xs">
+                    {wishlistLeng}
+                  </div>
+                ) : (
+                  <div className="text-white  px-2">{wishlistLeng}</div>
+                )}
+              </li>
+            </NavLink>
+
+            <NavLink to="/cart">
+              <li className="hover:text-gray-200 cursor-pointer flex items-center gap-2">
                 <i className="fa-solid fa-cart-shopping" />
-                <div className="text-white">{cartLeng}</div>
-              </NavLink>
-            </li>
+                {cartLeng > 0 ? (
+                  <div className="text-white bg-red-600 px-2 rounded-full shadow-2xs">
+                    {cartLeng}
+                  </div>
+                ) : (
+                  <div className="text-white  px-2">{cartLeng}</div>
+                )}
+              </li>
+            </NavLink>
           </ul>
         </nav>
 
