@@ -1,6 +1,6 @@
 import Heading from "../components/ui/Heading";
 import Button from "../components/ui/Button";
-import HorizontalPCCard from "../components/ui/Card";
+import HorizontalPCCard from "../components/ui/HorizontalCard";
 import VerticalPCCard from "../components/ui/VerticalCard";
 
 export default function DesignSystem() {

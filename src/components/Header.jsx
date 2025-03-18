@@ -68,8 +68,9 @@ export default function Header() {
               <NavLink to="/catalogo">Catalogo</NavLink>
             </li>
             <li className="hover:text-gray-200 cursor-pointer">
-              <NavLink to="/wishlist">
+              <NavLink to="/wishlist" className="relative">
                 <i className="fa-regular fa-heart" />
+                <div className="absolute top-0 right-0 w-12 h-12 rounded-full bg-red-500"></div>
               </NavLink>
             </li>
             <li className="hover:text-gray-200 cursor-pointer">
