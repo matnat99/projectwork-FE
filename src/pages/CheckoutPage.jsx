@@ -114,7 +114,24 @@ export default function CheckoutPage() {
         });
       }
 
-      infoSales(saleData);
+      // Update products quantity in the database
+      for (let i = 0; i < cartOut.length; i++) {
+        const prod_data = {
+          title: cartOut[i].title,
+          quantity: cartOut[i].quantity,
+        };
+
+        console.log(cartOut[i].title);
+
+        await fetch(`http://localhost:3001/yuno/update_quantity`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            title: cartOut[i].title,
+            quantity: cartOut[i].quantity,
+          }),
+        });
+      }
 
       // Clear cart and checkout data
       localStorage.removeItem("cart");
