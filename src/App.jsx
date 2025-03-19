@@ -7,7 +7,7 @@ import DefaultLayout from "./layouts/DefaultLayout";
 import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
 import DesignSystem from "./pages/DesignSystem";
-import Catalogo from "./pages/Catalogo";
+import BrandPage from "./pages/BrandPage";
 import PageNotFound from "./pages/PageNotFound";
 import WishlistPage from "./pages/WishlistPage";
 import CartPage from "./pages/CartPage";
@@ -25,14 +25,14 @@ export default function App() {
         <Route element={<DefaultLayout />}>
           <Route index element={<HomePage />} />
           <Route path="/Yuno/:title" element={<ProductPage />} />
-          <Route path="/catalogo" element={<Catalogo />} />
+          <Route path="/brand/:tag_name" element={<BrandPage />} />
           <Route path="/wishlist" element={<WishlistPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/order-success" element={<OrderSuccessPage />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="*" element={<PageNotFound />} />
         </Route>
-        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
   );
