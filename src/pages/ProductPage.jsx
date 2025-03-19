@@ -193,19 +193,28 @@ export default function ProductPage() {
                 )}
                 {inWishlist ? "Nei preferiti" : "Aggiungi ai preferiti"}
               </Button>
-              <Button
-                className={`cursor-pointer hover:bg-blue-700 ${
-                  inCart ? "bg-green-600 hover:bg-green-700" : ""
-                }`}
-                onClick={handleAddToCart}
-              >
-                {inCart > 0 ? (
-                  <i className="fa-solid fa-cart-shopping mr-2" />
-                ) : (
-                  <i class="fa-solid fa-cart-plus mr-2" />
-                )}
-                {inCart ? "Nel carrello" : "Aggiungi al carrello"}
-              </Button>
+              {product.quantity < 1 ? (
+                <Button
+                  className="bg-gray-500 cursor-not-allowed"
+                  disabled={true}
+                >
+                  NON DISPONIBILE
+                </Button>
+              ) : (
+                <Button
+                  className={`cursor-pointer hover:bg-blue-700 ${
+                    inCart ? "bg-green-600 hover:bg-green-700" : ""
+                  }`}
+                  onClick={handleAddToCart}
+                >
+                  {inCart > 0 ? (
+                    <i className="fa-solid fa-cart-shopping mr-2" />
+                  ) : (
+                    <i class="fa-solid fa-cart-plus mr-2" />
+                  )}
+                  {inCart ? "Nel carrello" : "Aggiungi al carrello"}
+                </Button>
+              )}
             </div>
           </div>
         </div>
