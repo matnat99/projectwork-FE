@@ -113,7 +113,7 @@ export default function Header() {
                 {cartLeng > 0 ? (
                   <i className="fa-solid fa-cart-shopping" />
                 ) : (
-                  <i class="fa-solid fa-cart-plus" />
+                  <i className="fa-solid fa-cart-plus" />
                 )}
                 {cartLeng > 0 && (
                   <div className="text-white text-xs bg-red-600 w-5 h-5 flex items-center justify-center rounded-full shadow-2xs absolute -top-2 -right-4">

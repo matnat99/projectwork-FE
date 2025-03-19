@@ -135,7 +135,7 @@ export default function HorizontalPCCard({
                 {inCart > 0 ? (
                   <i className="fa-solid fa-cart-shopping" />
                 ) : (
-                  <i class="fa-solid fa-cart-plus" />
+                  <i className="fa-solid fa-cart-plus" />
                 )}
               </Button>
             </div>
