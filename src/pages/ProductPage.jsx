@@ -181,7 +181,7 @@ export default function ProductPage() {
             </div>
             <div className="flex justify-end gap-4 mt-4">
               <Button
-                className={`cursor-pointer ${
+                className={`cursor-pointer hover:bg-blue-700 ${
                   inWishlist ? "bg-red-600 hover:bg-red-700" : ""
                 }`}
                 onClick={handleAddToWishlist}
@@ -194,7 +194,7 @@ export default function ProductPage() {
                 {inWishlist ? "Nei preferiti" : "Aggiungi ai preferiti"}
               </Button>
               <Button
-                className={`cursor-pointer ${
+                className={`cursor-pointer hover:bg-blue-700 ${
                   inCart ? "bg-green-600 hover:bg-green-700" : ""
                 }`}
                 onClick={handleAddToCart}

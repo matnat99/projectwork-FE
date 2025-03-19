@@ -174,7 +174,11 @@ export default function CheckoutPage() {
             />
           </div>
         ))}
-        <Button type="submit" variant="primary" className="w-full">
+        <Button
+          type="submit"
+          variant="primary"
+          className="w-full hover:bg-blue-700 "
+        >
           Conferma Ordine
         </Button>
       </form>

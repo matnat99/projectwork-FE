@@ -39,7 +39,9 @@ export default function OrderSuccessPage() {
             tuo ordine.
           </p>
           <Link to="/">
-            <Button variant="primary">Torna alla Home</Button>
+            <Button variant="primary" className="hover:bg-blue-700 ">
+              Torna alla Home
+            </Button>
           </Link>
         </div>
       </div>

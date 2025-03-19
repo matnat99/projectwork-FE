@@ -114,8 +114,8 @@ export default function VerticalPCCard({
             <div className="w-full flex gap-2 justify-center">
               <Button
                 onClick={handleAddToWishlist}
-                className={`text-center text-xs py-1 px-3 cursor-pointer ${
-                  inWishlist ? "bg-red-600" : "bg-blue-600"
+                className={`text-center text-xs py-1 px-3 cursor-pointer hover:bg-blue-700  ${
+                  inWishlist ? "bg-red-600 hover:bg-red-700" : "bg-blue-600"
                 }`}
                 size="xs"
               >
@@ -128,12 +128,12 @@ export default function VerticalPCCard({
               <Button
                 onClick={handleAddToCart}
                 disabled={quantity < 1}
-                className={`text-center text-xs py-1 px-3  ${
+                className={`text-center text-xs py-1 px-3 hover:bg-blue-700  ${
                   quantity < 1
                     ? "bg-gray-500 hover:bg-gray-500 cursor-not-allowed"
                     : inCart
-                    ? "bg-green-600 cursor-pointer"
-                    : "bg-blue-600 cursor-pointer"
+                    ? "bg-green-600 cursor-pointer hover:bg-green-700"
+                    : "bg-blue-600 cursor-pointer hover:bg-blue-700"
                 }`}
                 size="xs"
               >
