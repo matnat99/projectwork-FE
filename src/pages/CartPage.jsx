@@ -152,7 +152,7 @@ export default function CartPage() {
               </span>
             )}
             <span className={total !== discountedTotal ? "text-red-500" : ""}>
-              Totale finale: € {discountedTotal}
+              Totale finale: € {discountedTotal.toFixed(2)}
             </span>
           </Heading>
           <Button onClick={handleCheckout} variant="primary" className="mt-4">

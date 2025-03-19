@@ -220,7 +220,7 @@ export default function ProductPage() {
                     {inCart > 0 ? (
                       <i className="fa-solid fa-cart-shopping mr-2" />
                     ) : (
-                      <i class="fa-solid fa-cart-plus mr-2" />
+                      <i className="fa-solid fa-cart-plus mr-2" />
                     )}
                     {inCart ? "Nel carrello" : "Aggiungi al carrello"}
                   </Button>
