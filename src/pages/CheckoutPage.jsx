@@ -169,7 +169,7 @@ export default function CheckoutPage() {
                   [key]: e.target.value,
                 }))
               }
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border-b focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-500 dark:focus:border-blue-500"
               required
             />
           </div>
