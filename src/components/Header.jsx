@@ -45,7 +45,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="bg-blue-500 text-white py-4 px-6 shadow-md shadow-black sticky top-0 z-10">
+    <header className="bg-blue-500 text-white py-4 px-6 shadow-[0_01px_06px_rgba(0,0,0,0.25)] shadow-black sticky top-0 z-10">
       <div className="container mx-auto flex justify-between items-center">
         <Link to="/">
           <Heading level={1}>Yuno Build</Heading>

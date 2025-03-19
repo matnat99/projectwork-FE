@@ -128,7 +128,16 @@ export default function ProductPage() {
           </Link>
         </Heading>
         {/* Product Card*/}
-        <div className="grid grid-cols-12 gap-2 mt-5 p-4 bg-white rounded-xl shadow-md shadow-black">
+        <div
+          className={`grid grid-cols-12 gap-2 mt-5 p-4 bg-white rounded-xl shadow-md shadow-black ${
+            product.quantity < 1
+              ? "border-x-4 border-gray-600"
+              : product.discount > 0
+              ? "border-x-4 border-red-500"
+              : ""
+          }
+          }`}
+        >
           <div className="col-span-12 md:col-span-4">
             <img
               className="w-full"
@@ -193,28 +202,30 @@ export default function ProductPage() {
                 )}
                 {inWishlist ? "Nei preferiti" : "Aggiungi ai preferiti"}
               </Button>
-              {product.quantity < 1 ? (
-                <Button
-                  className="bg-gray-500 cursor-not-allowed"
-                  disabled={true}
-                >
-                  NON DISPONIBILE
-                </Button>
-              ) : (
-                <Button
-                  className={`cursor-pointer hover:bg-blue-700 ${
-                    inCart ? "bg-green-600 hover:bg-green-700" : ""
-                  }`}
-                  onClick={handleAddToCart}
-                >
-                  {inCart > 0 ? (
-                    <i className="fa-solid fa-cart-shopping mr-2" />
-                  ) : (
-                    <i class="fa-solid fa-cart-plus mr-2" />
-                  )}
-                  {inCart ? "Nel carrello" : "Aggiungi al carrello"}
-                </Button>
-              )}
+              <div className="w-49 flex justify-end">
+                {product.quantity < 1 ? (
+                  <Button
+                    className="bg-gray-500 cursor-not-allowed"
+                    disabled={true}
+                  >
+                    NON DISPONIBILE
+                  </Button>
+                ) : (
+                  <Button
+                    className={`cursor-pointer hover:bg-blue-700 ${
+                      inCart ? "bg-green-600 hover:bg-green-700" : ""
+                    }`}
+                    onClick={handleAddToCart}
+                  >
+                    {inCart > 0 ? (
+                      <i className="fa-solid fa-cart-shopping mr-2" />
+                    ) : (
+                      <i className="fa-solid fa-cart-plus mr-2" />
+                    )}
+                    {inCart ? "Nel carrello" : "Aggiungi al carrello"}
+                  </Button>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -250,19 +261,6 @@ export default function ProductPage() {
       {viewType === "horizontal" ? (
         // Visualizzazione orizzontale
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-          <HorizontalPCCard
-            title={product.title}
-            image={product.image}
-            description={product.description}
-            category={product.category}
-            price={product.price}
-            quantity={product.quantity}
-            cpu={product.cpu}
-            gpu={product.gpu}
-            ram={product.ram}
-            discount={product.discount}
-            id={product.id}
-          />
           {correlatedProducts.map((card, index) => (
             <div key={index} className={index === 0 ? "hidden md:block" : ""}>
               {product.title == card.title ? (
