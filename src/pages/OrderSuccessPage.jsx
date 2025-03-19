@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import Heading from "../components/ui/Heading";
 import Button from "../components/ui/Button";
-import { getInfoSales, infoSales } from "../utils/storage";
+import { getInfoSales, infoSales, clearCheckoutData } from "../utils/storage";
 
 export default function OrderSuccessPage() {
   const data = getInfoSales();

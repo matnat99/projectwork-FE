@@ -76,10 +76,12 @@ export default function CheckoutPage() {
 
       const userData = await userResponse.json();
       console.log(userData);
+      const uniqueUserID = uniqueId + "user";
 
       // Create sale
       const saleData = {
-        user_id: uniqueId,
+        id: uniqueId,
+        user_id: uniqueUserID,
         user_email: formData.email,
         user_address: formData.address,
         data: new Date().toISOString(),
@@ -96,6 +98,25 @@ export default function CheckoutPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(saleData),
       });
+
+      // Create product_sale
+      for (let i = 0; i < cartOut.length; i++) {
+        const prod_sale_data = {
+          sales_id: uniqueId,
+          quantity: cartOut[i].quantity,
+          unitary_price: cartOut[i].price,
+          product_title: cartOut[i].title,
+          product_image: cartOut[i].image,
+        };
+
+        await fetch("http://localhost:3001/prod_sale/new_prod_sale", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(prod_sale_data),
+        });
+      }
+
+      infoSales(saleData);
 
       // Clear cart and checkout data
       localStorage.removeItem("cart");
