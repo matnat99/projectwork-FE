@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import {
   addToWishlist,
+  removeFromCart,
+  removeFromWishlist,
   addToCart,
   isInWishlist,
   isInCart,
@@ -40,20 +42,25 @@ export default function VerticalPCCard({
 
   const handleAddToWishlist = (e) => {
     e.preventDefault();
-    addToWishlist({
-      id,
-      title,
-      image,
-      price,
-      discount,
-      category,
-      cpu,
-      description,
-      gpu,
-      quantity,
-      ram,
-    });
-    setInWishlist(true);
+    if (inWishlist) {
+      removeFromWishlist(id);
+      setInWishlist(false);
+    } else {
+      addToWishlist({
+        id,
+        title,
+        image,
+        price,
+        discount,
+        category,
+        cpu,
+        description,
+        gpu,
+        quantity,
+        ram,
+      });
+      setInWishlist(true);
+    }
   };
 
   const handleAddToCart = (e) => {

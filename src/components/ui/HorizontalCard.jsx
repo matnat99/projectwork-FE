@@ -5,6 +5,8 @@ import {
   addToWishlist,
   addToCart,
   isInWishlist,
+  removeFromWishlist,
+  removeFromCart,
   isInCart,
 } from "../../utils/storage";
 import { useState, useEffect } from "react";
@@ -38,22 +40,26 @@ export default function HorizontalPCCard({
 
   const handleAddToWishlist = (e) => {
     e.preventDefault();
-    addToWishlist({
-      id,
-      title,
-      image,
-      price,
-      discount,
-      category,
-      cpu,
-      description,
-      gpu,
-      quantity,
-      ram,
-    });
-    setInWishlist(true);
+    if (inWishlist) {
+      removeFromWishlist(id);
+      setInWishlist(false);
+    } else {
+      addToWishlist({
+        id,
+        title,
+        image,
+        price,
+        discount,
+        category,
+        cpu,
+        description,
+        gpu,
+        quantity,
+        ram,
+      });
+      setInWishlist(true);
+    }
   };
-
   const handleAddToCart = (e) => {
     e.preventDefault();
     addToCart({
