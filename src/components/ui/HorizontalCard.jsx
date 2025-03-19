@@ -76,7 +76,11 @@ export default function HorizontalPCCard({
     <Link to={`/yuno/${title}`}>
       <div
         className={`bg-white rounded-xl shadow-md shadow-black flex h-60 ${
-          discount > 0 ? "border-4 border-red-500" : ""
+          quantity < 1
+            ? "border-4 border-gray-600"
+            : discount > 0
+            ? "border-4 border-red-500"
+            : ""
         }`}
       >
         <div className="w-1/2">
@@ -91,26 +95,26 @@ export default function HorizontalPCCard({
             <Heading level={5} className="mb-1 line-clamp-3">
               {title}
             </Heading>
-            {/* <ul className="text-sm list-disc pl-5">
-            <li>{gpu}</li>
-            <li>{cpu}</li>
-            <li>{ram}</li>
-          </ul> */}
             <p className="text-xs  line-clamp-2 md:line-clamp-4 xl:line-clamp-5">
               {description}
             </p>
           </div>
           <div className="text-center mt-2">
-            <div className="mb-1">
-              {discount > 0 && (
-                <span className="text-red-500 line-through ml-2">{`€ ${Number(
-                  price
+            {quantity < 1 ? (
+              <span className="text-gray-500 text-2xl">NON DISPONIBILE </span>
+            ) : (
+              <div className="mb-1">
+                {discount > 0 && (
+                  <span className="text-red-500 line-through ml-2">{`€ ${Number(
+                    price
+                  ).toFixed(2)}`}</span>
+                )}
+                <span className="text-blue-600">{`€ ${Number(
+                  TotalDiscount
                 ).toFixed(2)}`}</span>
-              )}
-              <span className="text-blue-600">{`€ ${Number(
-                TotalDiscount
-              ).toFixed(2)}`}</span>
-            </div>
+              </div>
+            )}
+
             <div className="flex gap-2 justify-center mt-2">
               <Button
                 onClick={handleAddToWishlist}
@@ -127,8 +131,13 @@ export default function HorizontalPCCard({
               </Button>
               <Button
                 onClick={handleAddToCart}
-                className={`text-center text-xs py-1 px-3 cursor-pointer ${
-                  inCart ? "bg-green-600" : "bg-blue-600"
+                disabled={quantity < 1}
+                className={`text-center text-xs py-1 px-3${
+                  quantity < 1
+                    ? " bg-gray-600 hover:bg-gray-500 cursor-not-allowed"
+                    : inCart
+                    ? "bg-green-600  cursor-pointer "
+                    : "bg-blue-600  cursor-pointer "
                 }`}
                 size="xs"
               >
