@@ -120,6 +120,7 @@ export const clearCheckoutData = () => {
 
 export const infoSales = (data) => {
   const infoSales = {
+    id: data.id,
     user_id: data.user_id,
     user_email: data.user_email,
     user_address: data.user_address,
