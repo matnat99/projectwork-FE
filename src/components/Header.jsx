@@ -95,14 +95,7 @@ export default function Header() {
         {/* Menu Desktop */}
         <nav className="hidden sm:block">
           <ul className="flex gap-4">
-            <li className="hover:text-gray-200 cursor-pointer">
-              <NavLink to="/">Home</NavLink>
-            </li>
-            <li className="hover:text-gray-200 cursor-pointer">
-              <NavLink to="/catalogo">Catalogo</NavLink>
-            </li>
-
-            <NavLink to="/wishlist" className="relative">
+            <NavLink to="/wishlist">
               <li className="hover:text-gray-200 cursor-pointer flex items-center gap-2">
                 <i className="fa-regular fa-heart" />
                 {wishlistLeng > 0 ? (
@@ -110,7 +103,7 @@ export default function Header() {
                     {wishlistLeng}
                   </div>
                 ) : (
-                  <div className="text-white  px-2">{wishlistLeng}</div>
+                  <div className="text-blue-500  px-2">{wishlistLeng}</div>
                 )}
               </li>
             </NavLink>
@@ -123,7 +116,7 @@ export default function Header() {
                     {cartLeng}
                   </div>
                 ) : (
-                  <div className="text-white  px-2">{cartLeng}</div>
+                  <div className="text-blue-500  px-2">{cartLeng}</div>
                 )}
               </li>
             </NavLink>
