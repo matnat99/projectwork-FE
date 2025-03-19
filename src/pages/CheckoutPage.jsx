@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Heading from "../components/ui/Heading";
 import Button from "../components/ui/Button";
+import "../styles/forms.css";
+
 import {
   getCheckoutData,
   clearCheckoutData,
@@ -186,7 +188,7 @@ export default function CheckoutPage() {
                   [key]: e.target.value,
                 }))
               }
-              className="w-full p-2 border-b focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="w-full my_input p-2 border-b focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-500 dark:focus:border-blue-500"
               required
             />
           </div>

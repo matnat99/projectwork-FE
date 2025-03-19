@@ -1,0 +1,9 @@
+.my_input {
+  padding: 0;
+}
+
+.my_input:focus {
+  border-color: black; /* Change to red when focused */
+  outline: none; /* Remove the default outline */
+  padding-bottom: 0px;
+}
