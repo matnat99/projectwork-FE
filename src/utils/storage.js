@@ -35,7 +35,7 @@ export const addToCart = (product) => {
 
   localStorage.setItem("cart", JSON.stringify(cart));
   // Emetti l'evento di aggiornamento
-  window.dispatchEvent(new Event("carttUpdate"));
+  window.dispatchEvent(new Event("cartUpdate"));
 };
 
 export const moveToCart = (productId) => {
