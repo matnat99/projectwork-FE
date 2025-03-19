@@ -11,6 +11,7 @@ import {
   isInCart,
 } from "../../utils/storage";
 import { useState, useEffect } from "react";
+import { div } from "framer-motion/client";
 
 export default function VerticalPCCard({
   category,
@@ -108,14 +109,17 @@ export default function VerticalPCCard({
             <div>
               {quantity < 1 ? (
                 <span className="text-gray-500 text-2xl">NON DISPONIBILE </span>
-              ) : discount > 0 ? (
-                <span className="text-red-500 line-through ml-2">{`€ ${Number(
-                  price
-                ).toFixed(2)}`}</span>
               ) : (
-                <span className="text-blue-600">{`€ ${Number(
-                  TotalDiscount
-                ).toFixed(2)}`}</span>
+                <div className="mb-1">
+                  {discount > 0 && (
+                    <span className="text-red-500 line-through ml-2">{`€ ${Number(
+                      price
+                    ).toFixed(2)}`}</span>
+                  )}
+                  <span className="text-blue-600">{`€ ${Number(
+                    TotalDiscount
+                  ).toFixed(2)}`}</span>
+                </div>
               )}
             </div>
             <div className="w-full flex gap-2 justify-center">
