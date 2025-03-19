@@ -229,21 +229,38 @@ export default function ProductPage() {
       {viewType === "horizontal" ? (
         // Visualizzazione orizzontale
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+          <HorizontalPCCard
+            title={product.title}
+            image={product.image}
+            description={product.description}
+            category={product.category}
+            price={product.price}
+            quantity={product.quantity}
+            cpu={product.cpu}
+            gpu={product.gpu}
+            ram={product.ram}
+            discount={product.discount}
+            id={product.id}
+          />
           {correlatedProducts.map((card, index) => (
             <div key={index} className={index === 0 ? "hidden md:block" : ""}>
-              <HorizontalPCCard
-                title={card.title}
-                image={card.image}
-                description={card.description}
-                category={card.category}
-                price={card.price}
-                quantity={card.quantity}
-                cpu={card.cpu}
-                gpu={card.gpu}
-                ram={card.ram}
-                discount={card.discount}
-                id={card.id}
-              />
+              {product.title == card.title ? (
+                <></>
+              ) : (
+                <HorizontalPCCard
+                  title={card.title}
+                  image={card.image}
+                  description={card.description}
+                  category={card.category}
+                  price={card.price}
+                  quantity={card.quantity}
+                  cpu={card.cpu}
+                  gpu={card.gpu}
+                  ram={card.ram}
+                  discount={card.discount}
+                  id={card.id}
+                />
+              )}
             </div>
           ))}
         </div>
