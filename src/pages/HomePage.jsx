@@ -54,7 +54,7 @@ export default function HomePage() {
             </div>
           </div>
           {viewType === "horizontal" ? (
-            // Visualizzazione orizzontale (come nel tuo codice originale)
+            // Visualizzazione orizzontale
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
               {Pc.map((card, index) => (
                 <div
