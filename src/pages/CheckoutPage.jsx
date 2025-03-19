@@ -11,6 +11,7 @@ import {
 export default function CheckoutPage() {
   const navigate = useNavigate();
   const [checkoutData, setCheckoutData] = useState({});
+  const [cartOut, setCartOut] = useState([]);
   const [formData, setFormData] = useState({
     id: "",
     name: "",
@@ -21,6 +22,7 @@ export default function CheckoutPage() {
     phone: "",
   });
 
+  //recuperiamo i dati per il checkout
   useEffect(() => {
     const data = getCheckoutData();
     if (!data) {
@@ -29,6 +31,29 @@ export default function CheckoutPage() {
     }
     setCheckoutData(data);
   }, [navigate]);
+
+  //recuperiamo i prodotti nel carrello
+  useEffect(() => {
+    // Carica inizialmente i prodotti nel carrello
+    const Citems = JSON.parse(localStorage.getItem("cart") || "[]");
+    setCartOut(Citems);
+
+    // Listener per l'evento di aggiornamento carrello
+    const handleCartUpdate = () => {
+      const updatedItems = JSON.parse(localStorage.getItem("cart") || "[]");
+      setCartOut(updatedItems);
+    };
+
+    // Aggiungi il listener agll' evento
+    window.addEventListener("cartUpdate", handleCartUpdate);
+
+    // Cleanup del listener quando il componente viene smontato
+    return () => {
+      window.removeEventListener("cartUpdate", handleCartUpdate);
+    };
+  }, []);
+
+  console.log(cartOut);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -84,10 +109,24 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <Heading level={2} className="text-white mb-6">
-        Dati per l'acquisto
-      </Heading>
+    <div className="container mx-auto px-4 py-8 flex justify-between">
+      <div className="max-w-2xl mx-auto bg-white p-6 rounded-xl">
+        <Heading level={2} className=" mb-6">
+          Riepilogo Carrello:
+        </Heading>
+        <div>
+          {cartOut.map((card, index) => (
+            <div key={index} className={index === 0 ? "hidden md:block" : ""}>
+              title={card.title}
+              image={card.image}
+              price={card.price}
+              quantity={card.quantity}
+              discount={card.discount}
+            </div>
+          ))}
+        </div>
+      </div>
+
       <form
         onSubmit={handleSubmit}
         className="max-w-2xl mx-auto bg-white p-6 rounded-xl"
