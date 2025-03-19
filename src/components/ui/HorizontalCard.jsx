@@ -85,7 +85,7 @@ export default function HorizontalPCCard({
           quantity < 1
             ? "border-4 border-gray-600"
             : discount > 0
-            ? "border-4 border-red-500"
+            ? "border-x-4 border-red-500"
             : ""
         }`}
       >
@@ -101,7 +101,7 @@ export default function HorizontalPCCard({
             <Heading level={5} className="mb-1 line-clamp-3">
               {title}
             </Heading>
-            <p className="text-xs  line-clamp-2 md:line-clamp-4 xl:line-clamp-5">
+            <p className="text-xs line-clamp-2 md:line-clamp-4 xl:line-clamp-5">
               {description}
             </p>
           </div>
