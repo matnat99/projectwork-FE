@@ -112,7 +112,7 @@ export default function VerticalPCCard({
               <Button
                 onClick={handleAddToWishlist}
                 className={`text-center text-xs py-1 px-3 ${
-                  inWishlist ? "bg-blue-600" : ""
+                  inWishlist ? "bg-red-600" : "bg-blue-600"
                 }`}
                 size="xs"
               >
@@ -121,7 +121,7 @@ export default function VerticalPCCard({
               <Button
                 onClick={handleAddToCart}
                 className={`text-center text-xs py-1 px-3 ${
-                  inCart ? "bg-blue-600" : ""
+                  inCart ? "bg-green-600" : "bg-blue-600"
                 }`}
                 size="xs"
               >

@@ -44,8 +44,6 @@ export default function Header() {
     };
   }, []);
 
-  console.log(wishlistLeng, cartLeng);
-
   return (
     <header className="bg-blue-500 text-white py-4 px-6 shadow-md shadow-black relative">
       <div className="container mx-auto flex justify-between items-center">
