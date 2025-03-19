@@ -35,7 +35,7 @@ export default function HomePage() {
             <div className="bg-gray-700 rounded-lg p-1 inline-flex">
               <button
                 onClick={() => setViewType("horizontal")}
-                className={`p-2 rounded-md ${
+                className={`p-2 rounded-md cursor-pointer ${
                   viewType === "horizontal" ? "bg-gray-600 shadow-sm" : ""
                 }`}
                 aria-label="Visualizzazione orizzontale"
@@ -44,7 +44,7 @@ export default function HomePage() {
               </button>
               <button
                 onClick={() => setViewType("vertical")}
-                className={`p-2 rounded-md ${
+                className={`p-2 rounded-md cursor-pointer ${
                   viewType === "vertical" ? "bg-gray-600 shadow-sm" : ""
                 }`}
                 aria-label="Visualizzazione verticale"

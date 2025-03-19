@@ -47,7 +47,7 @@ export default function ProductPage() {
   const fetchCorrelatedProducts = () => {
     const { ram, cpu, gpu } = product;
     axios
-      .get("http://localhost:3001/yuno/correlated", {
+      .get("/yuno/correlated", {
         params: {
           ram: `${product.ram.match(/\d+/)[0]}gb`,
           cpu: product.cpu.match(/intel/i) ? "Intel" : "AMD",
@@ -181,17 +181,29 @@ export default function ProductPage() {
             </div>
             <div className="flex justify-end gap-4 mt-4">
               <Button
-                className={inWishlist ? "bg-red-600 hover:bg-red-700" : ""}
+                className={`cursor-pointer ${
+                  inWishlist ? "bg-red-600 hover:bg-red-700" : ""
+                }`}
                 onClick={handleAddToWishlist}
               >
-                <i className="fa-regular fa-heart mr-2"></i>
+                {inWishlist > 0 ? (
+                  <i className="fa-solid fa-heart mr-2" />
+                ) : (
+                  <i className="fa-regular fa-heart mr-2" />
+                )}
                 {inWishlist ? "Nei preferiti" : "Aggiungi ai preferiti"}
               </Button>
               <Button
-                className={inCart ? "bg-green-600 hover:bg-green-700" : ""}
+                className={`cursor-pointer ${
+                  inCart ? "bg-green-600 hover:bg-green-700" : ""
+                }`}
                 onClick={handleAddToCart}
               >
-                <i className="fa-solid fa-cart-shopping mr-2"></i>
+                {inCart > 0 ? (
+                  <i className="fa-solid fa-cart-shopping mr-2" />
+                ) : (
+                  <i class="fa-solid fa-cart-plus mr-2" />
+                )}
                 {inCart ? "Nel carrello" : "Aggiungi al carrello"}
               </Button>
             </div>
@@ -206,7 +218,7 @@ export default function ProductPage() {
           <div className="bg-gray-700 rounded-lg p-1 inline-flex">
             <button
               onClick={() => setViewType("horizontal")}
-              className={`p-2 rounded-md ${
+              className={`p-2 rounded-md cursor-pointer ${
                 viewType === "horizontal" ? "bg-gray-600 shadow-sm" : ""
               }`}
               aria-label="Visualizzazione orizzontale"
@@ -215,7 +227,7 @@ export default function ProductPage() {
             </button>
             <button
               onClick={() => setViewType("vertical")}
-              className={`p-2 rounded-md ${
+              className={`p-2 rounded-md cursor-pointer ${
                 viewType === "vertical" ? "bg-gray-600 shadow-sm" : ""
               }`}
               aria-label="Visualizzazione verticale"

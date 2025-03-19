@@ -59,11 +59,11 @@ export default function Header() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Cerca prodotti..."
-              className="w-full bg-white p-2 rounded-l text-black"
+              className="w-full bg-white p-2 rounded-l-xl text-black"
             />
             <button
               type="submit"
-              className="bg-blue-600 px-4 rounded-r hover:bg-blue-700"
+              className="bg-blue-800 px-4 rounded-r-xl hover:bg-blue-950"
             >
               <i className="fa-solid fa-search"></i>
             </button>
@@ -92,29 +92,33 @@ export default function Header() {
 
         {/* Menu Desktop */}
         <nav className="hidden sm:block">
-          <ul className="flex gap-4">
+          <ul className="flex gap-6">
             <NavLink to="/wishlist">
-              <li className="hover:text-gray-200 cursor-pointer flex items-center gap-2">
-                <i className="fa-regular fa-heart" />
+              <li className="hover:text-gray-200 cursor-pointer flex items-center gap-2 relative">
                 {wishlistLeng > 0 ? (
-                  <div className="text-white bg-red-600 px-2 rounded-full shadow-2xs">
+                  <i className="fa-solid fa-heart" />
+                ) : (
+                  <i className="fa-regular fa-heart" />
+                )}
+                {wishlistLeng > 0 && (
+                  <div className="text-white text-xs bg-red-600 w-5 h-5 flex items-center justify-center rounded-full shadow-2xs absolute -top-2 -right-4">
                     {wishlistLeng}
                   </div>
-                ) : (
-                  <div className="text-blue-500  px-2">{wishlistLeng}</div>
                 )}
               </li>
             </NavLink>
 
             <NavLink to="/cart">
-              <li className="hover:text-gray-200 cursor-pointer flex items-center gap-2">
-                <i className="fa-solid fa-cart-shopping" />
+              <li className="hover:text-gray-200 cursor-pointer flex items-center gap-2 relative">
                 {cartLeng > 0 ? (
-                  <div className="text-white bg-red-600 px-2 rounded-full shadow-2xs">
+                  <i className="fa-solid fa-cart-shopping" />
+                ) : (
+                  <i class="fa-solid fa-cart-plus" />
+                )}
+                {cartLeng > 0 && (
+                  <div className="text-white text-xs bg-red-600 w-5 h-5 flex items-center justify-center rounded-full shadow-2xs absolute -top-2 -right-4">
                     {cartLeng}
                   </div>
-                ) : (
-                  <div className="text-blue-500  px-2">{cartLeng}</div>
                 )}
               </li>
             </NavLink>

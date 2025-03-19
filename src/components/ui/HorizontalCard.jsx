@@ -114,21 +114,29 @@ export default function HorizontalPCCard({
             <div className="flex gap-2 justify-center mt-2">
               <Button
                 onClick={handleAddToWishlist}
-                className={`text-center text-xs py-1 px-3 ${
+                className={`text-center text-xs py-1 px-3 cursor-pointer ${
                   inWishlist ? "bg-red-600" : "bg-blue-600"
                 }`}
                 size="xs"
               >
-                <i className="fa-regular fa-heart"></i>
+                {inWishlist > 0 ? (
+                  <i className="fa-solid fa-heart" />
+                ) : (
+                  <i className="fa-regular fa-heart" />
+                )}
               </Button>
               <Button
                 onClick={handleAddToCart}
-                className={`text-center text-xs py-1 px-3 ${
+                className={`text-center text-xs py-1 px-3 cursor-pointer ${
                   inCart ? "bg-green-600" : "bg-blue-600"
                 }`}
                 size="xs"
               >
-                <i className="fa-solid fa-cart-shopping"></i>
+                {inCart > 0 ? (
+                  <i className="fa-solid fa-cart-shopping" />
+                ) : (
+                  <i class="fa-solid fa-cart-plus" />
+                )}
               </Button>
             </div>
           </div>
