@@ -38,24 +38,42 @@ export default function WishlistPage() {
               {item.title}
             </Heading>
             <div className="mt-auto pt-4 flex justify-between items-center">
-              {item.discount > 0 ? (
-                <div>
-                  <span className="text-gray-500 line-through">{`€ ${Number(
-                    item.price
-                  ).toFixed(2)}`}</span>
-                  <span className="text-red-600 ml-2">{`€ ${Number(
-                    item.price - (item.price / 100) * item.discount
-                  ).toFixed(2)}`}</span>
-                </div>
+              {item.quantity < 1 ? (
+                <div className="text-gray-500 font-bold"> NON DISPONIBILE</div>
               ) : (
-                <span className="text-blue-600">{`€ ${Number(
-                  item.price
-                ).toFixed(2)}`}</span>
+                <div>
+                  {item.discount > 0 ? (
+                    <div>
+                      <span className="text-gray-500 line-through">{`€ ${Number(
+                        item.price
+                      ).toFixed(2)}`}</span>
+                      <span className="text-red-600 ml-2">{`€ ${Number(
+                        item.price - (item.price / 100) * item.discount
+                      ).toFixed(2)}`}</span>
+                    </div>
+                  ) : (
+                    <span className="text-blue-600">{`€ ${Number(
+                      item.price
+                    ).toFixed(2)}`}</span>
+                  )}
+                </div>
               )}
+
               <div className="flex gap-2">
-                <Button onClick={() => handleMoveToCart(item.id)} size="sm">
-                  <i className="fa-solid fa-cart-shopping"></i>
-                </Button>
+                {item.quantity > 0 ? (
+                  <Button onClick={() => handleMoveToCart(item.id)} size="sm">
+                    <i className="fa-solid fa-cart-shopping"></i>
+                  </Button>
+                ) : (
+                  <Button
+                    disabled
+                    size="sm"
+                    className=" bg-gray-500 hover:bg-gray-500 cursor-not-allowed"
+                  >
+                    <i className="fa-solid fa-cart-shopping"></i>
+                  </Button>
+                )}
+
                 <Button
                   onClick={() => handleRemove(item.id)}
                   variant="secondary"
