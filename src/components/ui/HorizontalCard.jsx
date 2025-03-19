@@ -132,12 +132,12 @@ export default function HorizontalPCCard({
               <Button
                 onClick={handleAddToCart}
                 disabled={quantity < 1}
-                className={`text-center text-xs py-1 px-3${
+                className={`text-center text-xs py-1 px-3  ${
                   quantity < 1
-                    ? " bg-gray-600 hover:bg-gray-500 cursor-not-allowed"
+                    ? "bg-gray-500 hover:bg-gray-500 cursor-not-allowed"
                     : inCart
-                    ? "bg-green-600  cursor-pointer "
-                    : "bg-blue-600  cursor-pointer "
+                    ? "bg-green-600 cursor-pointer"
+                    : "bg-blue-600 cursor-pointer"
                 }`}
                 size="xs"
               >
