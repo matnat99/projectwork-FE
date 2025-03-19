@@ -99,14 +99,17 @@ export default function VerticalPCCard({
           <p className="text-sm line-clamp-3">{description}</p>
           <div className="mt-auto pt-4 flex flex-col items-center gap-2">
             <div>
-              {discount > 0 && (
+              {quantity < 1 ? (
+                <span className="text-gray-500 text-2xl">NON DISPONIBILE </span>
+              ) : discount > 0 ? (
                 <span className="text-red-500 line-through ml-2">{`€ ${Number(
                   price
                 ).toFixed(2)}`}</span>
+              ) : (
+                <span className="text-blue-600">{`€ ${Number(
+                  TotalDiscount
+                ).toFixed(2)}`}</span>
               )}
-              <span className="text-blue-600">{`€ ${Number(
-                TotalDiscount
-              ).toFixed(2)}`}</span>
             </div>
             <div className="w-full flex gap-2 justify-center">
               <Button
@@ -124,8 +127,13 @@ export default function VerticalPCCard({
               </Button>
               <Button
                 onClick={handleAddToCart}
-                className={`text-center text-xs py-1 px-3 cursor-pointer ${
-                  inCart ? "bg-green-600" : "bg-blue-600"
+                disabled={quantity < 1}
+                className={`text-center text-xs py-1 px-3  ${
+                  quantity < 1
+                    ? "bg-gray-500 hover:bg-gray-500 cursor-not-allowed"
+                    : inCart
+                    ? "bg-green-600 cursor-pointer"
+                    : "bg-blue-600 cursor-pointer"
                 }`}
                 size="xs"
               >

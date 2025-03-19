@@ -53,8 +53,6 @@ export default function CheckoutPage() {
     };
   }, []);
 
-  console.log(cartOut);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
