@@ -105,7 +105,10 @@ export default function HomePage() {
             </div>
           )}
         </div>
-        <Catalogo />
+        <div className="text-white text-center p-12">
+          <Heading level={2}>I migliori brand</Heading>
+          <Catalogo />
+        </div>
       </div>
     </>
   );
