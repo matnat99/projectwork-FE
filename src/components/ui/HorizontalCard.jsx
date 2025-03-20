@@ -81,7 +81,7 @@ export default function HorizontalPCCard({
   return (
     <Link to={`/yuno/${title}`}>
       <div
-        className={`bg-white rounded-xl shadow-md shadow-black flex h-60 ${
+        className={`bg-white rounded-xl shadow-md shadow-black flex h-80 ${
           quantity < 1
             ? "border-4 border-gray-600"
             : discount > 0
@@ -101,7 +101,7 @@ export default function HorizontalPCCard({
             <Heading level={5} className="mb-1 line-clamp-3">
               {title}
             </Heading>
-            <p className="text-xs line-clamp-2 md:line-clamp-4 xl:line-clamp-5">
+            <p className="text-xs line-clamp-8 md:line-clamp-4 xl:line-clamp-5">
               {description}
             </p>
           </div>
@@ -118,6 +118,28 @@ export default function HorizontalPCCard({
                 <span className="text-blue-600">{`€ ${Number(
                   TotalDiscount
                 ).toFixed(2)}`}</span>
+                {/* Aggiunta barra disponibilità */}
+                <div className="w-full bg-gray-200 h-2 rounded-full mt-2">
+                  <div
+                    className={`h-2 rounded-full ${
+                      quantity <= 3
+                        ? "bg-red-500"
+                        : quantity <= 7
+                        ? "bg-yellow-500"
+                        : "bg-green-500"
+                    }`}
+                    style={{
+                      width: `${Math.min((quantity / 10) * 100, 100)}%`,
+                    }}
+                  ></div>
+                </div>
+                <div className="text-xs text-gray-600 mt-1">
+                  {quantity <= 3
+                    ? "Quasi esaurito"
+                    : quantity <= 7
+                    ? "Disponibilità media"
+                    : "Ampia disponibilità"}
+                </div>
               </div>
             )}
 

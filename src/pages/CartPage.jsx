@@ -28,6 +28,7 @@ export default function CartPage() {
                 Math.max(1, newQuantity),
                 item.availableQuantity
               ),
+              bulkDiscount: newQuantity > 1 ? 5 : 0,
             }
           : item
       )
@@ -41,6 +42,7 @@ export default function CartPage() {
               Math.max(1, newQuantity),
               item.availableQuantity
             ),
+            bulkDiscount: newQuantity > 1 ? 5 : 0,
           }
         : item
     );
@@ -66,11 +68,11 @@ export default function CartPage() {
     let price = item.price;
     // Aggiungi sconto
     if (item.discount > 0) {
-      price = price - (price / 100) * item.discount;
+      price -= (price / 100) * item.discount;
     }
-    // applica sconto "bulk" se >1 di quantità
-    if (item.bulkDiscount > 0) {
-      price = price - (price / 100) * item.bulkDiscount;
+    // applica sconto "bulk" se > 1 di quantità
+    if (item.quantity > 1) {
+      price -= (price / 100) * item.bulkDiscount;
     }
     return acc + price * item.quantity;
   }, 0);
@@ -110,7 +112,7 @@ export default function CartPage() {
                 </span>
               </div>
               <div className="mt-auto pt-4 flex justify-between items-center">
-                {item.discount > 0 || item.bulkDiscount > 0 ? (
+                {item.discount > 0 || item.quantity > 1 ? (
                   <div>
                     <span className="text-gray-500 line-through">{`€ ${Number(
                       item.price * item.quantity
@@ -121,14 +123,14 @@ export default function CartPage() {
                         (item.price / 100) * item.bulkDiscount) *
                         item.quantity
                     ).toFixed(2)}`}</span>
-                    {item.bulkDiscount > 0 && (
+                    {item.quantity > 1 && (
                       <span className="text-green-600 text-sm ml-2">
                         (Sconto quantità: -5%)
                       </span>
                     )}
                   </div>
                 ) : (
-                  <span className="text-blue-600">{`€ ${Number(
+                  <span className="text-black-600">{`€ ${Number(
                     item.price * item.quantity
                   ).toFixed(2)}`}</span>
                 )}
@@ -148,12 +150,13 @@ export default function CartPage() {
         <p className="text-white text-center">Il tuo carrello è vuoto</p>
       ) : (
         <div className="mt-8 text-right text-white">
-          <Heading level={3}>
+          <Heading level={3} className="">
             {total !== discountedTotal && (
               <span className="line-through text-gray-400 mr-4">
-                Totale: € {total}
+                Totale: € {total.toFixed(2)}
               </span>
             )}
+
             <span className={total !== discountedTotal ? "text-red-500" : ""}>
               Totale finale: € {discountedTotal.toFixed(2)}
             </span>
