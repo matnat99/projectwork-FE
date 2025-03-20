@@ -102,7 +102,7 @@ export default function CheckoutPage() {
       });
 
       const userData = await userResponse.json();
-      console.log(userData);
+
       const uniqueUserID = uniqueId + "user";
 
       // Create sale
@@ -118,7 +118,6 @@ export default function CheckoutPage() {
       };
 
       infoSales(saleData);
-      console.log(infoSales);
 
       await fetch("http://localhost:3001/sale/new", {
         method: "POST",
@@ -149,8 +148,6 @@ export default function CheckoutPage() {
           title: cartOut[i].title,
           quantity: cartOut[i].quantity,
         };
-
-        console.log(cartOut[i].title);
 
         await fetch(`http://localhost:3001/yuno/update_quantity`, {
           method: "PUT",

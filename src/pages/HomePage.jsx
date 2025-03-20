@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import axios from "../api/axios";
 import Heading from "../components/ui/Heading";
 import VerticalPCCard from "../components/ui/VerticalCard";
@@ -16,6 +16,10 @@ export default function HomePage() {
     axios.get("/Yuno").then((response) => {
       SetPc(response.data);
     });
+  }, []);
+
+  useEffect(() => {
+    window.innerWidth > 511 ? setViewType("horizontal") : "";
   }, []);
 
   return (

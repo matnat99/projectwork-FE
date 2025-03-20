@@ -5,7 +5,7 @@ import Heading from "../components/ui/Heading";
 import Button from "../components/ui/Button";
 import HorizontalPCCard from "../components/ui/HorizontalCard";
 import VerticalPCCard from "../components/ui/VerticalCard";
-import { Grid, List } from "lucide-react";
+import { Check, Grid, List } from "lucide-react";
 import {
   addToWishlist,
   addToCart,
@@ -140,28 +140,34 @@ export default function ProductPage() {
         >
           <div className="col-span-12 md:col-span-4">
             <img
-              className="w-full"
+              className="w-full max-h-[400px] object-contain"
               src={`${product.image}.jpg`}
               alt={product.title}
             />
           </div>
           <div className="col-span-12 md:col-span-8 p-4 space-y-2 flex flex-col justify-between">
             <div className="flex flex-col">
-              <div className="flex items-center justify-between">
+              <div
+                className={`${
+                  window.innerWidth > 767
+                    ? "flex items-center justify-between"
+                    : ""
+                }`}
+              >
                 <Heading level={3}>{product.title}</Heading>
-                <div className="flex items-center justify-between">
+                <div className={`flex gap-1 items-center`}>
                   {product.discount > 0 && (
                     <Heading
                       level={5}
-                      className="text-red-500 line-through ml-2"
+                      className="text-red-500 line-through"
                     >{`€${Number(product.price).toFixed(2)}`}</Heading>
                   )}
-                  <Heading level={5} className="text-blue-600">{`€${Number(
+                  <Heading level={5} className="text-black">{`€${Number(
                     TotalDiscount
                   ).toFixed(2)}`}</Heading>
                 </div>
               </div>
-
+              <br />
               <Heading level={5}>
                 <strong>Categoria: </strong> {product.category}
               </Heading>
@@ -182,10 +188,12 @@ export default function ProductPage() {
                 <strong>Descrizione: </strong>
               </Heading>
               <p className="text-gray-900 text-md">{product.description}</p>
-
+              <br />
               <Heading level={5}>
                 <strong>Quantità: </strong>{" "}
-                <i className="text-gray-700">{product.quantity}</i>
+                <i className="text-gray-700">
+                  {product.quantity < 0 ? 0 : product.quantity}
+                </i>
               </Heading>
             </div>
             <div className="flex justify-end gap-4 mt-4">
@@ -196,9 +204,23 @@ export default function ProductPage() {
                 onClick={handleAddToWishlist}
               >
                 {inWishlist > 0 ? (
-                  <i className="fa-solid fa-heart mr-2" />
+                  <>
+                    <i
+                      className={`fa-solid fa-heart ${
+                        window.innerWidth < 511 ? "" : "mr-2"
+                      }`}
+                    />
+                    <a>{window.innerWidth < 511 ? <br /> : ""}</a>
+                  </>
                 ) : (
-                  <i className="fa-regular fa-heart mr-2" />
+                  <>
+                    <i
+                      className={`fa-regular fa-heart ${
+                        window.innerWidth < 511 ? "" : "mr-2"
+                      }`}
+                    />
+                    <a>{window.innerWidth < 511 ? <br /> : ""}</a>
+                  </>
                 )}
                 {inWishlist ? "Nei preferiti" : "Aggiungi ai preferiti"}
               </Button>
@@ -218,9 +240,23 @@ export default function ProductPage() {
                     onClick={handleAddToCart}
                   >
                     {inCart > 0 ? (
-                      <i className="fa-solid fa-cart-shopping mr-2" />
+                      <>
+                        <i
+                          className={`fa-solid fa-cart-shopping ${
+                            window.innerWidth < 511 ? "" : "mr-2"
+                          }`}
+                        />
+                        <a>{window.innerWidth < 511 ? <br /> : ""}</a>
+                      </>
                     ) : (
-                      <i className="fa-solid fa-cart-plus mr-2" />
+                      <>
+                        <i
+                          className={`fa-solid fa-cart-plus ${
+                            window.innerWidth < 511 ? "" : "mr-2"
+                          }`}
+                        />
+                        <a>{window.innerWidth < 511 ? <br /> : ""}</a>
+                      </>
                     )}
                     {inCart ? "Nel carrello" : "Aggiungi al carrello"}
                   </Button>
@@ -235,7 +271,7 @@ export default function ProductPage() {
       {correlatedProducts.length > 0 && (
         <div className="text-white p-12 mt-4 flex justify-between items-center">
           <Heading level={2}>Prodotti correlati</Heading>
-          <div className="bg-gray-700 rounded-lg p-1 inline-flex">
+          <div className="hidden md:inline-flex bg-gray-700 rounded-lg p-1">
             <button
               onClick={() => setViewType("horizontal")}
               className={`p-2 rounded-md cursor-pointer ${
