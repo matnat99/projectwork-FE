@@ -9,24 +9,28 @@ export default function Catalogo() {
           { src: "../img/immagine_samsung.png", alt: "Samsung" },
           { src: "../img/immagine_Lenovo.png", alt: "Lenovo" },
           { src: "../img/immagine_fujitsu.jpeg", alt: "Fujitsu" },
+          null,
           { src: "../img/immagine_asus.jpeg", alt: "Asus" },
-          { src: "../img/immagine_schedamadre.jpg", alt: "Generici" },
-        ].map((item, index) => (
-          <div
-            key={index}
-            className="flex w-full h-48 overflow-hidden object-contain"
-          >
-            <Link to={`/brand/${item.alt}`}>
-              <button className="w-full h-full flex items-center justify-center">
-                <img
-                  src={item.src}
-                  alt={item.alt}
-                  className="w-full h-full object-contain"
-                />
-              </button>
-            </Link>
-          </div>
-        ))}
+        ].map((item, index) =>
+          item ? (
+            <div
+              key={index}
+              className="w-full h-48 overflow-hidden object-contain"
+            >
+              <Link to={`/brand/${item.alt}`}>
+                <button className="w-full h-full flex items-center justify-center">
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    className="w-full h-full"
+                  />
+                </button>
+              </Link>
+            </div>
+          ) : (
+            <div key={index} className="w-full h-48"></div>
+          )
+        )}
       </div>
     </div>
   );
