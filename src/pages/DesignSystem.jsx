@@ -2,6 +2,7 @@ import Heading from "../components/ui/Heading";
 import Button from "../components/ui/Button";
 import HorizontalPCCard from "../components/ui/HorizontalCard";
 import VerticalPCCard from "../components/ui/VerticalCard";
+import EmailForm from "../components/ui/emailForm";
 
 export default function DesignSystem() {
   return (
@@ -94,6 +95,16 @@ export default function DesignSystem() {
             link="/prodotti/hp-pavilion"
           />
         </div>
+      </section>
+      <section>
+            <div className="py-10">
+              <h1 className="text-3xl font-bold text-center">
+                SISTEMA DI INVIO MAIL
+              </h1>
+            </div>
+            <div className="flex justify-center">
+              <EmailForm />
+            </div>
       </section>
     </div>
   );
