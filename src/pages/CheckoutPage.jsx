@@ -45,7 +45,7 @@ export default function CheckoutPage() {
     name: "",
     surname: "",
     email: "",
-    password: "",
+    password: "xxx",
     address: "",
     phone: "",
   });
@@ -219,7 +219,6 @@ export default function CheckoutPage() {
             <div key={key} className="mb-4">
               <label className="block mb-2">{label}</label>
               <input
-                type="text"
                 value={formData[key]}
                 onChange={(e) =>
                   setFormData((prev) => ({
