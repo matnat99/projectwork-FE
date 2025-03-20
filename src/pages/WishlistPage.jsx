@@ -29,7 +29,7 @@ export default function WishlistPage() {
           {wishlist.map((item) => (
             <div
               key={item.id}
-              className="bg-white rounded-xl p-4 flex flex-col"
+              className="bg-white text-black rounded-xl p-4 flex flex-col"
             >
               <img
                 src={`${item.image}.jpg`}
@@ -49,15 +49,15 @@ export default function WishlistPage() {
                   <div>
                     {item.discount > 0 ? (
                       <div>
-                        <span className="text-gray-500 line-through">{`€ ${Number(
+                        <span className="text-gray-500 line-through font-medium">{`€ ${Number(
                           item.price
                         ).toFixed(2)}`}</span>
-                        <span className="text-red-600 ml-2">{`€ ${Number(
+                        <span className="text-red-600 ml-2 font-medium">{`€ ${Number(
                           item.price - (item.price / 100) * item.discount
                         ).toFixed(2)}`}</span>
                       </div>
                     ) : (
-                      <span className="text-blue-600">{`€ ${Number(
+                      <span className="text-black font-medium">{`€ ${Number(
                         item.price
                       ).toFixed(2)}`}</span>
                     )}
