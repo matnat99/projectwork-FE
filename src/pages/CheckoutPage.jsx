@@ -9,6 +9,7 @@ import {
   getCheckoutData,
   clearCheckoutData,
   infoSales,
+  removeFromCart,
 } from "../utils/storage";
 import { div } from "framer-motion/client";
 
@@ -170,6 +171,9 @@ export default function CheckoutPage() {
 
       // Clear cart and checkout data
       localStorage.removeItem("cart");
+      // Dispatchare l'evento di aggiornamento del carrello
+      window.dispatchEvent(new Event("cartUpdate"));
+
       clearCheckoutData();
 
       // Redirect to success page
