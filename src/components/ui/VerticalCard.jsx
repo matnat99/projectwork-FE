@@ -183,7 +183,7 @@ export default function VerticalPCCard({
             </div>
           </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </>
   );
 }
