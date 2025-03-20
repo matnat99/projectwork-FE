@@ -107,15 +107,15 @@ export default function HorizontalPCCard({
           </div>
           <div className="text-center mt-2">
             {quantity < 1 ? (
-              <span className="text-gray-500 text-2xl">NON DISPONIBILE </span>
+              <span className="text-gray-500 text-2xl">NON DISPONIBILE</span>
             ) : (
               <div className="mb-1">
                 {discount > 0 && (
                   <span className="text-red-500 line-through ml-2">{`€ ${Number(
                     price
                   ).toFixed(2)}`}</span>
-                )}
-                <span className="text-blue-600">{`€ ${Number(
+                )}{" "}
+                <span className="text-black">{`€ ${Number(
                   TotalDiscount
                 ).toFixed(2)}`}</span>
                 {/* Aggiunta barra disponibilità */}

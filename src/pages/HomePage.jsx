@@ -9,7 +9,7 @@ import Hero from "../components/Hero";
 import { Grid, List } from "lucide-react";
 
 export default function HomePage() {
-  const [viewType, setViewType] = useState("horizontal"); // "horizontal" o "vertical"
+  const [viewType, setViewType] = useState("vertical"); // "horizontal" o "vertical"
   const [Pc, SetPc] = useState([]);
 
   useEffect(() => {
@@ -30,9 +30,11 @@ export default function HomePage() {
       </div>
       <div className="bg-[#181818]">
         <div className="container mx-auto">
-          <div className="text-white p-12 flex justify-between items-center">
-            <Heading level={2}>Ultime Aggiunte</Heading>
-            <div className="bg-gray-700 rounded-lg p-1 inline-flex">
+          <div className="text-white p-12 md:flex justify-between items-center">
+            <Heading level={2} className="text-center md:text-left">
+              Ultime Aggiunte
+            </Heading>
+            <div className="hidden md:inline-flex bg-gray-700 rounded-lg p-1">
               <button
                 onClick={() => setViewType("horizontal")}
                 className={`p-2 rounded-md cursor-pointer ${
@@ -55,7 +57,11 @@ export default function HomePage() {
           </div>
           {viewType === "horizontal" ? (
             // Visualizzazione orizzontale
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+            <div
+              className={`grid grid-cols-1 md:${setViewType(
+                "horizontal"
+              )} md:grid-cols-2 lg:grid-cols-3 gap-4 p-4`}
+            >
               {Pc.map((card, index) => (
                 <div
                   key={index}
@@ -80,7 +86,9 @@ export default function HomePage() {
           ) : (
             // Visualizzazione verticale
             <div className="flex justify-center">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4">
+              <div
+                className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4`}
+              >
                 {Pc.map((card, index) => (
                   <div
                     key={index}
