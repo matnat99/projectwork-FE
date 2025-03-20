@@ -28,7 +28,7 @@ export default function Catalogo() {
               </Link>
             </div>
           ) : (
-            <div key={index} className="w-full h-48"></div>
+            <div key={index} className="hidden lg:block w-full h-48"></div>
           )
         )}
       </div>
