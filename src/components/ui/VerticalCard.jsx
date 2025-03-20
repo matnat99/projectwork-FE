@@ -112,7 +112,9 @@ export default function VerticalPCCard({
           <div className="mt-auto pt-4 flex flex-col items-center gap-2">
             <div>
               {quantity < 1 ? (
-                <span className="text-gray-500 text-2xl">NON DISPONIBILE</span>
+                <span className="text-gray-500 text-md md:text-xl lg:text-2xl">
+                  NON DISPONIBILE
+                </span>
               ) : (
                 <div className="mb-1 text-center">
                   {discount > 0 && (
@@ -124,7 +126,7 @@ export default function VerticalPCCard({
                     TotalDiscount
                   ).toFixed(2)}`}</span>
                   {/* Aggiunta barra disponibilità */}
-                  <div className="w-full bg-gray-200 h-2 rounded-full mt-2">
+                  <div className="max-w-18 w-full m-auto bg-gray-200 h-2 rounded-full mt-2">
                     <div
                       className={`h-2 rounded-full ${
                         quantity <= 3

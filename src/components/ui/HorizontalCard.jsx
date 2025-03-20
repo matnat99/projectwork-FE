@@ -119,7 +119,7 @@ export default function HorizontalPCCard({
                   TotalDiscount
                 ).toFixed(2)}`}</span>
                 {/* Aggiunta barra disponibilità */}
-                <div className="w-full bg-gray-200 h-2 rounded-full mt-2">
+                <div className="max-w-36 w-full m-auto bg-gray-200 h-2 rounded-full mt-2">
                   <div
                     className={`h-2 rounded-full ${
                       quantity <= 3

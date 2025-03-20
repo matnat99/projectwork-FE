@@ -6,11 +6,10 @@ import { getInfoSales, infoSales, clearCheckoutData } from "../utils/storage";
 
 export default function OrderSuccessPage() {
   const data = getInfoSales();
-  console.log(data);
 
   return (
     <>
-      <div className="container mx-auto px-4 py-8 text-center">
+      <div className="container mx-auto px-4 py-8">
         <div className="bg-white rounded-xl p-8 max-w-2xl mx-auto">
           <Heading level={2} className="mb-4">
             Scontrino:

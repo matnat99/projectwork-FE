@@ -48,7 +48,13 @@ export default function Header() {
     <header className="bg-blue-500 text-white py-4 px-6 shadow-[0_01px_06px_rgba(0,0,0,0.25)] shadow-black sticky top-0 z-10">
       <div className="container mx-auto flex justify-between items-center">
         <Link to="/">
-          <Heading level={1}>Yuno Build</Heading>
+          <Heading level={1} className="max-w-[240px]">
+            <img
+              src="../img/YunoName.png"
+              className="invert"
+              alt="Brand_Name"
+            />
+          </Heading>
         </Link>
 
         {/* Search Bar */}
@@ -133,7 +139,7 @@ export default function Header() {
         >
           <ul className="flex flex-col items-center justify-center gap-8 h-full text-lg">
             <li className="w-full px-4 bg-white">
-              <form onSubmit={handleSearch} className="flex">
+              <form onSubmit={handleSearch} className="hidden md:flex">
                 <input
                   type="text"
                   value={searchTerm}
@@ -161,12 +167,30 @@ export default function Header() {
             </li>
             <li className="hover:text-gray-200 cursor-pointer transform hover:scale-110 transition-transform">
               <NavLink to="/wishlist" onClick={() => setIsMenuOpen(false)}>
-                <i className="fa-regular fa-heart" />
+                {wishlistLeng > 0 ? (
+                  <i className="fa-solid fa-heart" />
+                ) : (
+                  <i className="fa-regular fa-heart" />
+                )}
+                {wishlistLeng > 0 && (
+                  <div className="text-white text-xs bg-red-600 w-5 h-5 flex items-center justify-center rounded-full shadow-2xs absolute -top-2 -right-4">
+                    {wishlistLeng}
+                  </div>
+                )}
               </NavLink>
             </li>
             <li className="hover:text-gray-200 cursor-pointer transform hover:scale-110 transition-transform">
               <NavLink to="/cart" onClick={() => setIsMenuOpen(false)}>
-                <i className="fa-solid fa-cart-shopping" />
+                {cartLeng > 0 ? (
+                  <i className="fa-solid fa-cart-shopping" />
+                ) : (
+                  <i className="fa-solid fa-cart-plus" />
+                )}
+                {cartLeng > 0 && (
+                  <div className="text-white text-xs bg-red-600 w-5 h-5 flex items-center justify-center rounded-full shadow-2xs absolute -top-2 -right-4">
+                    {cartLeng}
+                  </div>
+                )}
               </NavLink>
             </li>
             <li className="hover:text-gray-200 cursor-pointer transform hover:scale-110 transition-transform">
