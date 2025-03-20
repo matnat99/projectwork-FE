@@ -10,6 +10,7 @@ import {
   clearCheckoutData,
   infoSales,
 } from "../utils/storage";
+import { div } from "framer-motion/client";
 
 // Funzione per inviare l'email, definita fuori dal componente
 const sendOrderConfirmationEmail = async (email) => {
@@ -179,68 +180,69 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8 flex justify-between">
-      <div className="max-w-2xl mx-auto bg-white p-6 rounded-xl">
-        <Heading level={2} className=" mb-6">
-          Riepilogo Carrello:
-        </Heading>
-        <div>
-          {cartOut.map((card, index) => (
-            <div key={index} className={index === 0 ? "hidden md:block" : ""}>
-              <div className="flex items-center justify-between mb-4">
-                <img
-                  src={card.image}
-                  alt={card.title}
-                  className="w-20 h-20 object-cover"
-                />
-                <div className="flex-1 ml-4">
-                  <h3 className="font-semibold">{card.title}</h3>
-                  <p>Quantità: {card.quantity}</p>
-                  <p>Prezzo: €{card.price}</p>
-                  {card.discount && <p>Sconto: {card.discount}%</p>}
+    <div className="max-w-5xl mx-auto">
+      <div className="flex flex-col md:flex-row justify-center gap-6 px-4 py-14">
+        <div className="bg-white p-6 rounded-xl shadow-xl shadow-black">
+          <Heading level={4}>Riepilogo Carrello:</Heading>
+          <div className="mt-4">
+            {cartOut.map((card, index) => (
+              <div key={index}>
+                <div className="flex mb-4">
+                  <img
+                    src={`${card.image}.jpg`}
+                    alt={card.title}
+                    className="w-30 h-30 object-contain"
+                  />
+                  <div className="flex-1 ml-4">
+                    <h3 className="font-semibold">{card.title}</h3>
+                    <p>Quantità: {card.quantity}</p>
+                    <p>Prezzo: €{card.price}</p>
+                    {card.discount > 0 && <p>Sconto: {card.discount}%</p>}
+                  </div>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+
+        <form
+          onSubmit={handleSubmit}
+          className="bg-white p-6 rounded-xl flex-1 h-[480px] shadow-xl shadow-black"
+        >
+          {Object.entries({
+            name: "Nome",
+            surname: "Cognome",
+            email: "Email",
+            address: "Indirizzo",
+            phone: "Telefono",
+          }).map(([key, label]) => (
+            <div key={key} className="mb-4">
+              <label className="block mb-2">{label}</label>
+              <input
+                type="text"
+                value={formData[key]}
+                onChange={(e) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    [key]: e.target.value,
+                  }))
+                }
+                className="w-full my_input p-2 border-b focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                required
+              />
             </div>
           ))}
-        </div>
-      </div>
-
-      <form
-        onSubmit={handleSubmit}
-        className="max-w-2xl mx-auto bg-white p-6 rounded-xl"
-      >
-        {Object.entries({
-          name: "Nome",
-          surname: "Cognome",
-          email: "Email",
-          password: "Password",
-          address: "Indirizzo",
-          phone: "Telefono",
-        }).map(([key, label]) => (
-          <div key={key} className="mb-4">
-            <label className="block mb-2">{label}</label>
-            <input
-              type={key === "password" ? "password" : "text"}
-              value={formData[key]}
-              onChange={(e) =>
-                setFormData((prev) => ({
-                  ...prev,
-                  [key]: e.target.value,
-                }))
-              }
-              className="w-full my_input p-2 border-b focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              required
-            />
+          <div className="mt-10">
+            <Button
+              type="submit"
+              variant="primary"
+              className="w-full hover:bg-blue-700"
+            >
+              Conferma Ordine
+            </Button>
           </div>
-        ))}
-        <Button
-          type="submit"
-          variant="primary"
-          className="w-full hover:bg-blue-700 "
-        >
-          Conferma Ordine
-        </Button>
-      </form>
+        </form>
+      </div>
     </div>
   );
 }

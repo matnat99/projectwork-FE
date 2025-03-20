@@ -31,7 +31,7 @@ export default function HomePage() {
       <div className="bg-[#181818]">
         <div className="container mx-auto">
           <div className="text-white p-12 flex justify-between items-center">
-            <Heading level={2}>Ultime Aggiunte</Heading>
+            <Heading level={2}>I nostri prodotti</Heading>
             <div className="bg-gray-700 rounded-lg p-1 inline-flex">
               <button
                 onClick={() => setViewType("horizontal")}
@@ -106,7 +106,7 @@ export default function HomePage() {
           )}
         </div>
         <div className="text-white text-center p-12">
-          <Heading level={2}>I migliori brand</Heading>
+          <Heading level={2}>I nostri brand</Heading>
           <Catalogo />
         </div>
       </div>
