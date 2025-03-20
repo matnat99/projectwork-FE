@@ -107,7 +107,7 @@ export default function HorizontalPCCard({
           </div>
           <div className="text-center mt-2">
             {quantity < 1 ? (
-              <span className="text-gray-500 text-2xl">NON DISPONIBILE</span>
+              <span className="text-gray-500 text-xl">NON DISPONIBILE</span>
             ) : (
               <div className="mb-1">
                 {discount > 0 && (
