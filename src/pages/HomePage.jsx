@@ -35,7 +35,6 @@ export default function HomePage() {
               I Nostri Prodotti
             </Heading>
             <div className="hidden md:inline-flex bg-gray-700 rounded-lg p-1">
-
               <button
                 onClick={() => setViewType("horizontal")}
                 className={`p-2 rounded-md cursor-pointer ${
@@ -58,11 +57,7 @@ export default function HomePage() {
           </div>
           {viewType === "horizontal" ? (
             // Visualizzazione orizzontale
-            <div
-              className={`grid grid-cols-1 md:${setViewType(
-                "horizontal"
-              )} md:grid-cols-2 lg:grid-cols-3 gap-4 p-4`}
-            >
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
               {Pc.map((card, index) => (
                 <div
                   key={index}
