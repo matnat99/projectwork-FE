@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Heading from "../components/ui/Heading";
 import Button from "../components/ui/Button";
+import axios from "axios";
 import "../styles/forms.css";
 
 import {
@@ -9,6 +10,30 @@ import {
   clearCheckoutData,
   infoSales,
 } from "../utils/storage";
+
+// Funzione per inviare l'email, definita fuori dal componente
+const sendOrderConfirmationEmail = async (email) => {
+  try {
+    const response = await axios.post(
+      "http://localhost:3001/email/send-confirmation",
+      {
+        email: email,
+      }
+    );
+
+    if (response.status === 200) {
+      console.log("✅ Email inviata con successo a:", email);
+      console.log("📧 Dettagli email:", response.data);
+      return true;
+    } else {
+      console.log("❌ Errore nell'invio dell'email:", response.status);
+      return false;
+    }
+  } catch (error) {
+    console.error("❌ Errore nell'invio dell'email:", error.message);
+    return false;
+  }
+};
 
 export default function CheckoutPage() {
   const navigate = useNavigate();
@@ -135,6 +160,13 @@ export default function CheckoutPage() {
         });
       }
 
+      // Controllo invio email
+      const emailSent = await sendOrderConfirmationEmail(formData.email);
+      if (!emailSent) {
+        console.log("⚠️ Attenzione: problemi con l'invio dell'email");
+        // Puoi decidere se continuare comunque o gestire diversamente
+      }
+
       // Clear cart and checkout data
       localStorage.removeItem("cart");
       clearCheckoutData();
@@ -155,11 +187,19 @@ export default function CheckoutPage() {
         <div>
           {cartOut.map((card, index) => (
             <div key={index} className={index === 0 ? "hidden md:block" : ""}>
-              title={card.title}
-              image={card.image}
-              price={card.price}
-              quantity={card.quantity}
-              discount={card.discount}
+              <div className="flex items-center justify-between mb-4">
+                <img
+                  src={card.image}
+                  alt={card.title}
+                  className="w-20 h-20 object-cover"
+                />
+                <div className="flex-1 ml-4">
+                  <h3 className="font-semibold">{card.title}</h3>
+                  <p>Quantità: {card.quantity}</p>
+                  <p>Prezzo: €{card.price}</p>
+                  {card.discount && <p>Sconto: {card.discount}%</p>}
+                </div>
+              </div>
             </div>
           ))}
         </div>
