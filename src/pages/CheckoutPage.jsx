@@ -221,6 +221,7 @@ export default function CheckoutPage() {
               <label className="block mb-2">{label}</label>
               <input
                 value={formData[key]}
+                maxLength={label == "Telefono" ? 13 : 500}
                 onChange={(e) =>
                   setFormData((prev) => ({
                     ...prev,
