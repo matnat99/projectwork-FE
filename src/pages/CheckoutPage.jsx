@@ -50,6 +50,7 @@ export default function CheckoutPage() {
     address: "",
     phone: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   //recuperiamo i dati per il checkout
   useEffect(() => {
@@ -84,6 +85,7 @@ export default function CheckoutPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       // Genera un ID univoco che sarà usato sia per l'utente che per la vendita
       const uniqueId = crypto.randomUUID();
@@ -183,9 +185,9 @@ export default function CheckoutPage() {
   return (
     <div className="max-w-5xl mx-auto">
       <div className="flex flex-col md:flex-row justify-center gap-6 px-4 py-14">
-        <div className="bg-white p-6 rounded-xl shadow-xl shadow-black">
+        <div className="bg-white p-4 rounded-xl shadow-xl shadow-black flex flex-col h-full">
           <Heading level={4}>Riepilogo Carrello:</Heading>
-          <div className="mt-4">
+          <div className="mt-4 flex-grow">
             {cartOut.map((card, index) => (
               <div key={index}>
                 <div className="flex mb-4">
@@ -195,21 +197,50 @@ export default function CheckoutPage() {
                     className="w-30 h-30 object-contain"
                   />
                   <div className="flex-1 ml-4">
-                    <h3 className="font-semibold">{card.title}</h3>
-                    <p>Quantità: {card.quantity}</p>
-                    <p>Prezzo: €{card.price}</p>
-                    {card.discount > 0 && <p>Sconto: {card.discount}%</p>}
+                    <Heading level={6}>{card.title}</Heading>
+                    <p>
+                      <strong>Quantità:</strong> {card.quantity}
+                    </p>
+                    <p>
+                      <strong>Prezzo:</strong>{" "}
+                      {card.discount > 0 || card.quantity > 1 ? (
+                        <span className="text-black-600">{`€${Number(
+                          (card.price -
+                            (card.price / 100) * card.discount -
+                            (card.price / 100) * card.bulkDiscount) *
+                            card.quantity
+                        ).toFixed(2)}`}</span>
+                      ) : (
+                        <span className="text-black-600">{`€${Number(
+                          card.price * card.quantity
+                        ).toFixed(2)}`}</span>
+                      )}
+                    </p>
+                    {card.discount > 0 && (
+                      <p>
+                        <strong>Totale sconto:</strong> {card.discount}%
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
             ))}
           </div>
+          <div className="mt-auto text-end">
+            <Heading level={5} className="text-red-600 ml-2">
+              Totale finale: €
+              {checkoutData.discountedTotal
+                ? Number(checkoutData.discountedTotal).toFixed(2)
+                : "0.00"}
+            </Heading>
+          </div>
         </div>
 
         <form
           onSubmit={handleSubmit}
-          className="bg-white p-6 rounded-xl flex-1 h-[480px] shadow-xl shadow-black"
+          className="bg-white p-4 rounded-xl flex-1 h-[500px] shadow-xl shadow-black"
         >
+          <Heading level={4}>Dati Fatturazione:</Heading>
           {Object.entries({
             name: "Nome",
             surname: "Cognome",
@@ -217,7 +248,7 @@ export default function CheckoutPage() {
             address: "Indirizzo",
             phone: "Telefono",
           }).map(([key, label]) => (
-            <div key={key} className="mb-4">
+            <div key={key} className="my-4">
               <label className="block mb-2">{label}</label>
               <input
                 value={formData[key]}
@@ -233,13 +264,18 @@ export default function CheckoutPage() {
               />
             </div>
           ))}
-          <div className="mt-10">
+          <div className="mt-8 text-center">
             <Button
               type="submit"
               variant="primary"
-              className="w-full hover:bg-blue-700"
+              className="hover:bg-blue-700"
+              disabled={isLoading}
             >
-              Conferma Ordine
+              {isLoading ? (
+                <div className="w-5 h-5 border-4 border-white border-t-transparent rounded-full animate-spin mx-auto"></div>
+              ) : (
+                "Conferma Ordine"
+              )}
             </Button>
           </div>
         </form>

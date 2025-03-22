@@ -150,7 +150,7 @@ export default function CartPage() {
         <p className="text-white text-center">Il tuo carrello è vuoto</p>
       ) : (
         <div className="mt-8 text-right text-white">
-          <Heading level={3} className="">
+          <Heading level={3}>
             {total !== discountedTotal && (
               <span className="line-through text-gray-400 mr-4">
                 Totale: € {total.toFixed(2)}

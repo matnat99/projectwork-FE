@@ -11,23 +11,34 @@ export default function OrderSuccessPage() {
     <>
       <div className="container mx-auto px-4 py-8">
         <div className="bg-white rounded-xl p-8 max-w-2xl mx-auto">
-          <Heading level={2} className="mb-4">
-            Scontrino:
-          </Heading>
-          <div>
-            <p>Email: {JSON.stringify(data.user_email)}</p>
-            <p>Indirizzo: {JSON.stringify(data.user_address)}</p>
-            <p>Data acquisto: {JSON.stringify(data.data)}</p>
-            <p>Stato ordine: {JSON.stringify(data.state)}</p>
+          <Heading level={3}>Ricevuta:</Heading>
+          <div className="mt-2">
+            <p>
+              <strong>Email:</strong> {JSON.stringify(data.user_email)}
+            </p>
+            <p>
+              <strong>Indirizzo:</strong> {JSON.stringify(data.user_address)}
+            </p>
+            <p>
+              <strong>Data acquisto:</strong> {JSON.stringify(data.data)}
+            </p>
+            <p>
+              <strong>Stato ordine:</strong> {JSON.stringify(data.state)}
+            </p>
             {data.discounted && (
-              <p>Prezzo Scontato: {JSON.stringify(data.discounted)} €</p>
+              <p>
+                <strong>Prezzo Scontato:</strong>{" "}
+                {JSON.stringify(data.discounted)} €
+              </p>
             )}
-            <p>Prezzo: {JSON.stringify(data.total)} €</p>
+            <p>
+              <strong>Totale:</strong> €{JSON.stringify(data.total)}
+            </p>
           </div>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-8 text-center">
+      <div className="container mx-auto px-4 py-4 text-center">
         <div className="bg-white rounded-xl p-8 max-w-2xl mx-auto">
           <i className="fa-solid fa-circle-check text-green-500 text-6xl mb-4"></i>
           <Heading level={2} className="mb-4">

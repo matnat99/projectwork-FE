@@ -36,7 +36,7 @@ export default function Heading({ level, children, className, ...props }) {
   }
   if (level === 6) {
     return (
-      <h6 className={`text-md font-medium ${className}`} {...props}>
+      <h6 className={`text-md font-bold ${className}`} {...props}>
         {children}
       </h6>
     );
