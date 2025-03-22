@@ -61,7 +61,7 @@ export default function HomePage() {
           </div>
           {viewType === "horizontal" ? (
             // Visualizzazione orizzontale
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 p-4">
               {Pc.map((card, index) => (
                 <div
                   key={index}

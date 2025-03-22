@@ -161,11 +161,6 @@ export default function Header() {
               </NavLink>
             </li>
             <li className="hover:text-gray-200 cursor-pointer transform hover:scale-110 transition-transform">
-              <NavLink to="/catalogo" onClick={() => setIsMenuOpen(false)}>
-                Catalogo
-              </NavLink>
-            </li>
-            <li className="hover:text-gray-200 cursor-pointer transform hover:scale-110 transition-transform">
               <NavLink to="/wishlist" onClick={() => setIsMenuOpen(false)}>
                 {wishlistLeng > 0 ? (
                   <i className="fa-solid fa-heart" />

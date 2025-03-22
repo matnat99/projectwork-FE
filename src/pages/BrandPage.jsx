@@ -9,7 +9,7 @@ import Heading from "../components/ui/Heading";
 export default function BrandPage() {
   const { tag_name } = useParams();
   const [products, setProducts] = useState([]);
-  const [viewType, setViewType] = useState("horizontal"); // "horizontal" o "vertical"
+  const [viewType, setViewType] = useState("vertical"); // "horizontal" o "vertical"
 
   useEffect(() => {
     const fetchProducts = () => {
@@ -24,12 +24,33 @@ export default function BrandPage() {
     fetchProducts();
   }, [tag_name]);
 
+  useEffect(() => {
+    window.innerWidth > 511 ? setViewType("horizontal") : "";
+    window.innerWidth > 766 && window.innerWidth < 1024
+      ? setViewType("vertical")
+      : "";
+  }, []);
+
   return (
     <div className="container mx-auto p-10">
       <div className="container mx-auto">
-        <div className="text-white p-12 flex justify-between items-center">
+        <div
+          className={`text-white p-12 ${
+            (window.innerWidth > 766 && window.innerWidth < 1024) ||
+            window.innerWidth < 511
+              ? "text-center"
+              : "flex justify-between items-center"
+          }`}
+        >
           <Heading level={2}>Prodotti {tag_name}</Heading>
-          <div className="bg-gray-700 rounded-lg p-1 inline-flex">
+          <div
+            className={`${
+              (window.innerWidth > 766 && window.innerWidth < 1024) ||
+              window.innerWidth < 511
+                ? "hidden"
+                : "bg-gray-700 rounded-lg p-1 inline-flex"
+            }`}
+          >
             <button
               onClick={() => setViewType("horizontal")}
               className={`p-2 rounded-md cursor-pointer ${
@@ -53,7 +74,7 @@ export default function BrandPage() {
 
         {viewType === "horizontal" ? (
           // Visualizzazione orizzontale
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 p-4">
             {products.map((card, index) => (
               <div key={index} className={index === 0 ? "hidden md:block" : ""}>
                 <HorizontalPCCard
