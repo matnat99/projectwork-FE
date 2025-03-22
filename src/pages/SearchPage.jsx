@@ -37,11 +37,11 @@ export default function SearchPage() {
       {isLoading ? (
         <p className="text-white text-center">Caricamento...</p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
           {results.map((product) => (
             <HorizontalPCCard key={product.id} {...product} />
           ))}
-          {results.length === 0 && searchParams.get("q") && (
+          {results.length == 0 && searchParams.get("q") && (
             <p className="text-white col-span-full text-center">
               Nessun risultato trovato
             </p>
