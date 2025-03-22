@@ -45,12 +45,12 @@ export default function ProductPage() {
   useEffect(fetchProduct, [title, navigate]);
 
   const fetchCorrelatedProducts = () => {
-    const { ram, cpu, gpu } = product;
+    const { ram, category } = product;
     axios
       .get("/yuno/correlated", {
         params: {
-          ram: `${product.ram.match(/\d+/)[0]}gb`,
-          cpu: product.cpu.match(/intel/i) ? "Intel" : "AMD",
+          ram: `${ram.match(/\d+/)[0]}gb`,
+          category: category,
         },
       })
       .then((res) => {
