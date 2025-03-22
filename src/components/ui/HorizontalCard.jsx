@@ -101,7 +101,7 @@ export default function HorizontalPCCard({
             <Heading level={5} className="mb-1 line-clamp-3">
               {title}
             </Heading>
-            <p className="text-xs line-clamp-5 md:line-clamp-4 xl:line-clamp-5">
+            <p className="text-xs line-clamp-3 md:line-clamp-4 xl:line-clamp-5 ">
               {description}
             </p>
           </div>

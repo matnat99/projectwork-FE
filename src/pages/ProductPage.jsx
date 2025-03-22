@@ -21,7 +21,7 @@ export default function ProductPage() {
   const [inWishlist, setInWishlist] = useState(false);
   const [inCart, setInCart] = useState(false);
   const [correlatedProducts, setCorrelatedProducts] = useState([]);
-  const [viewType, setViewType] = useState("horizontal");
+  const [viewType, setViewType] = useState("vertical");
   const navigate = useNavigate();
   let TotalDiscount = product.price;
 
@@ -115,6 +115,10 @@ export default function ProductPage() {
       setInCart(true);
     }
   };
+
+  useEffect(() => {
+    window.innerWidth > 600 ? setViewType("horizontal") : "";
+  }, []);
 
   return (
     <div className="max-w-8xl mx-auto px-4 my-12">
@@ -269,7 +273,13 @@ export default function ProductPage() {
 
       {/* Correlated */}
       {correlatedProducts.length > 0 && (
-        <div className="text-white p-12 mt-4 flex justify-between items-center">
+        <div
+          className={`text-white p-12 ${
+            window.innerWidth < 600
+              ? "text-center"
+              : "mt-4 flex justify-between items-center"
+          }`}
+        >
           <Heading level={2}>Prodotti correlati</Heading>
           <div className="hidden md:inline-flex bg-gray-700 rounded-lg p-1">
             <button
@@ -296,7 +306,7 @@ export default function ProductPage() {
 
       {viewType === "horizontal" ? (
         // Visualizzazione orizzontale
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 p-4">
           {correlatedProducts.map((card, index) => (
             <div key={index} className={index === 0 ? "hidden md:block" : ""}>
               {product.title == card.title ? (
