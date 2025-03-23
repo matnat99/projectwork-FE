@@ -19,7 +19,9 @@ export default function Header() {
     const Witems = JSON.parse(localStorage.getItem("wishlist") || "[]");
     setWishlistLeng(Witems.length);
     const Citems = JSON.parse(localStorage.getItem("cart") || "[]");
-    setCartLeng(Citems.length);
+    // Calcola il totale delle quantità nel carrello
+    const totalQuantity = Citems.reduce((acc, item) => acc + item.quantity, 0);
+    setCartLeng(totalQuantity);
 
     // Listener per l'evento di aggiornamento wishlist
     const handleWishlistUpdate = () => {
@@ -30,7 +32,11 @@ export default function Header() {
     // Listener per l'evento di aggiornamento carrello
     const handleCartUpdate = () => {
       const updatedItems = JSON.parse(localStorage.getItem("cart") || "[]");
-      setCartLeng(updatedItems.length);
+      const updatedTotalQuantity = updatedItems.reduce(
+        (acc, item) => acc + item.quantity,
+        0
+      );
+      setCartLeng(updatedTotalQuantity);
     };
 
     // Aggiungi il listener agli eventi
