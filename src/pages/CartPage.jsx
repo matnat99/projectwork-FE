@@ -47,6 +47,8 @@ export default function CartPage() {
         : item
     );
     localStorage.setItem("cart", JSON.stringify(updatedCart));
+    // Dispatchare l'evento di aggiornamento del carrello
+    window.dispatchEvent(new Event("cartUpdate"));
   };
 
   const handleCheckout = () => {
